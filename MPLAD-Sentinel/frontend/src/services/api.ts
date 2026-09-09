@@ -12,6 +12,11 @@ import type {
   ProjectRiskResponse,
   AdminRiskResponse,
   LocationVerificationResponse,
+  CitizenReportResponse,
+  ProjectReportsResponse,
+  ProjectEvidenceResponse,
+  AdminCitizenReportsResponse,
+  AdminProjectEvidenceResponse,
 } from '../types';
 
 const BASE = '/api';
@@ -91,4 +96,52 @@ export async function verifyProjectLocation(
   return apiFetch<LocationVerificationResponse>(
     `/projects/${encodeURIComponent(projectId)}/location?latitude=${latitude}&longitude=${longitude}`
   );
+}
+
+// ─── Phase 8/9: Citizen Verification & Evidence APIs ────────────────────────
+
+export async function submitCitizenReport(
+  projectId: string,
+  formData: FormData
+): Promise<CitizenReportResponse> {
+  const res = await fetch(`${BASE}/projects/${encodeURIComponent(projectId)}/reports`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(err.error || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function getProjectCitizenReports(
+  projectId: string
+): Promise<ProjectReportsResponse> {
+  return apiFetch<ProjectReportsResponse>(`/projects/${encodeURIComponent(projectId)}/reports`);
+}
+
+export async function getProjectEvidenceSummary(
+  projectId: string
+): Promise<ProjectEvidenceResponse> {
+  return apiFetch<ProjectEvidenceResponse>(`/projects/${encodeURIComponent(projectId)}/evidence`);
+}
+
+export async function getAdminCitizenReports(
+  params: Record<string, any> = {}
+): Promise<AdminCitizenReportsResponse> {
+  const qs = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '' && v !== 'All') {
+      qs.set(k, String(v));
+    }
+  });
+  const queryString = qs.toString();
+  return apiFetch<AdminCitizenReportsResponse>(`/admin/citizen-reports${queryString ? `?${queryString}` : ''}`);
+}
+
+export async function getAdminProjectEvidence(
+  projectId: string
+): Promise<AdminProjectEvidenceResponse> {
+  return apiFetch<AdminProjectEvidenceResponse>(`/admin/projects/${encodeURIComponent(projectId)}/evidence`);
 }

@@ -22,6 +22,7 @@ import {
   ArrowUpRight,
   IndianRupee,
   Info,
+  Camera,
 } from 'lucide-react';
 import {
   BarChart,
@@ -42,6 +43,7 @@ import {
   getAdminProjects,
   getAdminAnomalies,
   getAdminRisk,
+  getAdminCitizenReports,
 } from '../services/api';
 import type {
   AdminSummaryData,
@@ -51,6 +53,8 @@ import type {
   AdminAnomaliesSummary,
   PortfolioRiskData,
   RiskScoreLevel,
+  CitizenReport,
+  AdminCitizenReportsMetrics,
 } from '../types';
 
 function fmtCurrency(lakhs: number | undefined | null): string {
@@ -68,6 +72,8 @@ export default function AuthorityDashboard() {
   const [portfolioRisk, setPortfolioRisk] = useState<PortfolioRiskData | null>(null);
   const [riskLevelFilter, setRiskLevelFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
   const [minRiskScore, setMinRiskScore] = useState<number>(0);
+  const [adminReports, setAdminReports] = useState<CitizenReport[]>([]);
+  const [reportsMetrics, setReportsMetrics] = useState<AdminCitizenReportsMetrics | null>(null);
   const [filtersData, setFiltersData] = useState<{
     states: string[];
     districts: string[];
@@ -92,12 +98,13 @@ export default function AuthorityDashboard() {
       setLoading(true);
       setError(null);
 
-      const [sumRes, attRes, projRes, anomRes, riskRes] = await Promise.all([
+      const [sumRes, attRes, projRes, anomRes, riskRes, citRes] = await Promise.all([
         getAdminSummary(),
         getAdminAttention(),
         getAdminProjects(),
         getAdminAnomalies().catch(() => null),
         getAdminRisk().catch(() => null),
+        getAdminCitizenReports().catch(() => null),
       ]);
 
       if (sumRes.data) setSummary(sumRes.data);
@@ -105,6 +112,10 @@ export default function AuthorityDashboard() {
       if (projRes.data) setProjects(projRes.data);
       if (anomRes && anomRes.data) setAnomaliesSummary(anomRes.data);
       if (riskRes && riskRes.data) setPortfolioRisk(riskRes.data);
+      if (citRes && citRes.data) {
+        setAdminReports(citRes.data);
+        if (citRes.metrics) setReportsMetrics(citRes.metrics);
+      }
       if (projRes.filters) {
         setFiltersData({
           states: projRes.filters.states || [],
@@ -836,6 +847,153 @@ export default function AuthorityDashboard() {
               {anomaliesSummary?.projects[0]?.disclaimer ||
                 'These are automated monitoring signals, not proof of fraud. Final verification remains with authorities.'}
             </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 4B. CITIZEN VERIFICATION & GROUND EVIDENCE SURVEILLANCE (Phase 8 & 9) ── */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2.5 mb-1">
+              <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+                <Camera size={20} />
+              </div>
+              <h2 className="text-lg font-bold text-slate-900">
+                Citizen Verification & Ground Evidence Surveillance
+              </h2>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                Field Intelligence
+              </span>
+            </div>
+            <p className="text-xs text-slate-500">
+              Real-time ground truth reports submitted by citizens containing photos, GPS proximity, and feedback.
+            </p>
+          </div>
+        </div>
+
+        {/* 4 Citizen Evidence KPI Summary Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 text-xs">
+          <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200">
+            <span className="text-xs text-slate-500 font-medium block mb-1">Total Ground Reports</span>
+            <span className="text-2xl font-extrabold text-slate-900">{reportsMetrics?.totalReports || adminReports.length}</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">Citizen submissions</span>
+          </div>
+
+          <div className="bg-indigo-50/40 rounded-2xl p-4 border border-indigo-200">
+            <span className="text-xs text-indigo-700 font-medium block mb-1">Projects Monitored</span>
+            <span className="text-2xl font-extrabold text-indigo-900">
+              {reportsMetrics?.projectsWithReports || new Set(adminReports.map((r) => r.projectId)).size}
+            </span>
+            <span className="text-[10px] text-indigo-600 block mt-0.5">With citizen ground reports</span>
+          </div>
+
+          <div className="bg-emerald-50/40 rounded-2xl p-4 border border-emerald-200">
+            <span className="text-xs text-emerald-700 font-medium block mb-1">Reports with GPS</span>
+            <span className="text-2xl font-extrabold text-emerald-900">
+              {reportsMetrics?.reportsWithGPS || adminReports.filter((r) => r.latitude).length}
+            </span>
+            <span className="text-[10px] text-emerald-600 block mt-0.5">Geolocated field checks</span>
+          </div>
+
+          <div className="bg-blue-50/40 rounded-2xl p-4 border border-blue-200">
+            <span className="text-xs text-blue-700 font-medium block mb-1">Reports with Photos</span>
+            <span className="text-2xl font-extrabold text-blue-900">
+              {reportsMetrics?.reportsWithPhotos || adminReports.filter((r) => r.imageUrl).length}
+            </span>
+            <span className="text-[10px] text-blue-600 block mt-0.5">Site photographs attached</span>
+          </div>
+        </div>
+
+        {/* Citizen Evidence Surveillance Table */}
+        {adminReports.length === 0 ? (
+          <div className="py-12 text-center text-xs text-slate-400 bg-slate-50 rounded-2xl border border-slate-200">
+            No citizen ground verification reports have been recorded in the database yet.
+          </div>
+        ) : (
+          <div className="overflow-x-auto border border-slate-200 rounded-2xl">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-semibold text-[10px]">
+                  <th className="py-3 px-4">Report ID</th>
+                  <th className="py-3 px-4">Project ID</th>
+                  <th className="py-3 px-4">Category</th>
+                  <th className="py-3 px-4">Observation / Feedback</th>
+                  <th className="py-3 px-4">GPS Proximity</th>
+                  <th className="py-3 px-4">Image Similarity</th>
+                  <th className="py-3 px-4">Date</th>
+                  <th className="py-3 px-4 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {adminReports.slice(0, 8).map((rep) => (
+                  <tr key={rep.reportId} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-blue-700">
+                      {rep.reportId}
+                    </td>
+                    <td className="py-3.5 px-4 font-mono text-slate-700">
+                      <Link to={`/projects/${rep.projectId}`} className="hover:underline font-semibold text-slate-900">
+                        {rep.projectId}
+                      </Link>
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-800">
+                      {rep.category}
+                    </td>
+                    <td className="py-3.5 px-4 max-w-xs truncate text-slate-600">
+                      "{rep.description}"
+                    </td>
+                    <td className="py-3.5 px-4">
+                      <span
+                        className={`font-semibold px-2 py-0.5 rounded-full border text-[10px] ${
+                          rep.locationStatus === 'VERY_CLOSE' || rep.locationStatus === 'CLOSE'
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                            : rep.locationStatus === 'UNKNOWN'
+                            ? 'bg-slate-100 text-slate-600'
+                            : 'bg-amber-50 text-amber-700 border-amber-200'
+                        }`}
+                      >
+                        {rep.locationStatus ? rep.locationStatus.replace(/_/g, ' ') : 'UNKNOWN'}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4">
+                      {rep.imageSimilarity && rep.imageSimilarity.result !== 'NONE' ? (
+                        <span
+                          className={`font-semibold px-2 py-0.5 rounded-full border text-[10px] ${
+                            rep.imageSimilarity.result === 'HIGH_SIMILARITY'
+                              ? 'bg-amber-50 text-amber-800 border-amber-300'
+                              : 'bg-slate-100 text-slate-700 border-slate-200'
+                          }`}
+                        >
+                          {rep.imageSimilarity.result.replace(/_/g, ' ')}
+                        </span>
+                      ) : (
+                        <span className="text-slate-400 text-[10px]">—</span>
+                      )}
+                    </td>
+                    <td className="py-3.5 px-4 text-slate-500 whitespace-nowrap">
+                      {new Date(rep.submittedAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                      <Link
+                        to={`/admin/projects/${rep.projectId}/evidence`}
+                        className="inline-flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors border border-indigo-200/60"
+                      >
+                        Review Evidence &rarr;
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Mandatory Disclaimer */}
+        <div className="mt-5 p-3.5 bg-blue-50/60 border border-blue-200/70 rounded-2xl flex items-start gap-2.5 text-xs text-blue-900 leading-relaxed">
+          <Info size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-bold text-blue-950">Evidence Review Notice: </span>
+            Citizen reports provide real-time field observation signals to assist monitoring authorities in prioritizing physical inspections. They do not constitute formal judicial verdicts.
           </div>
         </div>
       </div>

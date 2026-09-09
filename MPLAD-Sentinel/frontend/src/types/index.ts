@@ -462,3 +462,138 @@ export interface LocationVerificationResponse {
   data?: LocationVerificationData;
   error?: string;
 }
+
+// ─── Phase 8 & 9 — Citizen Verification & Ground Evidence ───────────────────
+
+export type CitizenReportCategory =
+  | 'Project Progress'
+  | 'Project Not Found'
+  | 'Work Quality'
+  | 'Project Status'
+  | 'Project Location'
+  | 'Project Information'
+  | 'Other';
+
+export interface CitizenVerificationSignal {
+  type: string;
+  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'INFO';
+  title: string;
+  message: string;
+}
+
+export interface CitizenReportImageSimilarity {
+  similarityScore: number;
+  result: 'HIGH_SIMILARITY' | 'MODERATE_SIMILARITY' | 'LOW_SIMILARITY' | 'UNAVAILABLE' | 'NONE';
+  comparedAgainst: 'OFFICIAL_PHOTO' | 'CITIZEN_REPORT' | 'NONE';
+  matchedSource?: string;
+  message?: string;
+}
+
+export interface CitizenReport {
+  _id: string;
+  reportId: string;
+  projectId: string;
+  category: CitizenReportCategory;
+  description: string;
+  imageUrl?: string;
+  submittedAt: string;
+  locationDistanceMeters?: number;
+  locationDistanceKm?: number;
+  locationStatus: ProximityStatus | 'UNKNOWN';
+  locationSignal?: string;
+  imageSimilarity?: CitizenReportImageSimilarity;
+  verificationSignals: CitizenVerificationSignal[];
+  status: string;
+  latitude?: number;
+  longitude?: number;
+  gpsAccuracy?: number;
+}
+
+export interface ProjectEvidenceSummary {
+  projectId: string;
+  reportCount: number;
+  photoCount: number;
+  gpsCount: number;
+  locationSignals: {
+    consistent: number;
+    distant: number;
+    unknown: number;
+  };
+  imageSignals: {
+    highSimilarity: number;
+    moderateSimilarity: number;
+    lowSimilarity: number;
+  };
+  status: string;
+  disclaimer: string;
+  citizenEvidenceSignal: {
+    reportCount: number;
+    locationConsistency: string;
+    imageSimilaritySignals: number;
+    evidenceAvailable: boolean;
+  };
+}
+
+export interface CitizenReportResponse {
+  success: boolean;
+  data: CitizenReport;
+  error?: string;
+}
+
+export interface ProjectReportsResponse {
+  success: boolean;
+  count: number;
+  data: CitizenReport[];
+  error?: string;
+}
+
+export interface ProjectEvidenceResponse {
+  success: boolean;
+  data: ProjectEvidenceSummary;
+  error?: string;
+}
+
+export interface AdminCitizenReportsMetrics {
+  totalReports: number;
+  projectsWithReports: number;
+  reportsWithGPS: number;
+  reportsWithPhotos: number;
+}
+
+export interface AdminCitizenReportsResponse {
+  success: boolean;
+  total: number;
+  page: number;
+  limit: number;
+  metrics: AdminCitizenReportsMetrics;
+  data: CitizenReport[];
+  error?: string;
+}
+
+export interface AdminProjectEvidenceData {
+  project: {
+    _id: string;
+    projectId: string;
+    name: string;
+    category: string;
+    status: string;
+    district: string;
+    state: string;
+    latitude: number;
+    longitude: number;
+    address?: string;
+    images: string[];
+    sanctionedAmount: number;
+    expenditure: number;
+    physicalProgress: number;
+  };
+  evidenceSummary: ProjectEvidenceSummary;
+  reports: CitizenReport[];
+  disclaimer: string;
+}
+
+export interface AdminProjectEvidenceResponse {
+  success: boolean;
+  data: AdminProjectEvidenceData;
+  error?: string;
+}

@@ -38,6 +38,8 @@ import {
   getProjectIntelligence,
   getProjectAnomalies,
   getProjectRisk,
+  getProjectCitizenReports,
+  getProjectEvidenceSummary,
 } from '../services/api';
 import type {
   Project,
@@ -46,6 +48,8 @@ import type {
   ProjectIntelligence,
   ProjectAnomaliesData,
   ProjectRiskData,
+  CitizenReport,
+  ProjectEvidenceSummary,
 } from '../types';
 
 const RISK_CONFIG: Record<RiskLevel, { label: string; badge: string; bar: string }> = {
@@ -128,6 +132,8 @@ export default function ProjectDetails() {
   const [intel, setIntel]     = useState<ProjectIntelligence | null>(null);
   const [anomaliesData, setAnomaliesData] = useState<ProjectAnomaliesData | null>(null);
   const [riskData, setRiskData]           = useState<ProjectRiskData | null>(null);
+  const [citizenReports, setCitizenReports] = useState<CitizenReport[]>([]);
+  const [evidenceSummary, setEvidenceSummary] = useState<ProjectEvidenceSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
 
@@ -141,8 +147,10 @@ export default function ProjectDetails() {
       getProjectIntelligence(projectId).catch(() => null),
       getProjectAnomalies(projectId).catch(() => null),
       getProjectRisk(projectId).catch(() => null),
+      getProjectCitizenReports(projectId).catch(() => null),
+      getProjectEvidenceSummary(projectId).catch(() => null),
     ])
-      .then(([projRes, intelRes, anomalyRes, riskRes]) => {
+      .then(([projRes, intelRes, anomalyRes, riskRes, reportsRes, evidenceRes]) => {
         setProject(projRes.data);
         if (intelRes && intelRes.data) {
           setIntel(intelRes.data);
@@ -154,6 +162,12 @@ export default function ProjectDetails() {
         }
         if (riskRes && riskRes.data) {
           setRiskData(riskRes.data);
+        }
+        if (reportsRes && reportsRes.data) {
+          setCitizenReports(reportsRes.data);
+        }
+        if (evidenceRes && evidenceRes.data) {
+          setEvidenceSummary(evidenceRes.data);
         }
       })
       .catch((err) => setError(err.message))
@@ -253,21 +267,31 @@ export default function ProjectDetails() {
 
       {/* Project Header Card */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-6 shadow-sm">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${statusBadge}`}>
-            {project.status}
-          </span>
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${risk.badge}`}>
-            {risk.label}
-          </span>
-          <span className="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium">
-            {project.category}
-          </span>
-          {project.financialYear && (
-            <span className="text-xs bg-slate-50 text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-mono">
-              FY {project.financialYear}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${statusBadge}`}>
+              {project.status}
             </span>
-          )}
+            <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${risk.badge}`}>
+              {risk.label}
+            </span>
+            <span className="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium">
+              {project.category}
+            </span>
+            {project.financialYear && (
+              <span className="text-xs bg-slate-50 text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-mono">
+                FY {project.financialYear}
+              </span>
+            )}
+          </div>
+
+          <Link
+            to={`/projects/${project.projectId}/report`}
+            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3.5 py-1.5 rounded-xl transition-all shadow-sm"
+          >
+            <Camera size={14} />
+            <span>Verify This Project / Report Issue</span>
+          </Link>
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-2">
@@ -1053,9 +1077,12 @@ export default function ProjectDetails() {
 
         {/* Official Photos */}
         <Section title="Official Project Site Photographs" icon={Camera}>
-          <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg mb-3">
-            ⚠️ Representative prototype photographs. Official geo-tagged site images will be integrated in Phase 4.
-          </p>
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+              OFFICIAL PROJECT PHOTO
+            </span>
+            <span className="text-[11px] text-slate-400">Sanctioned site records</span>
+          </div>
           <div className="grid grid-cols-2 gap-3">
             {(project.images && project.images.length > 0 ? project.images : [
               'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=600&q=80',
@@ -1063,11 +1090,165 @@ export default function ProjectDetails() {
             ]).slice(0, 2).map((img, i) => (
               <div key={i} className="rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
                 <img src={img} alt={`Site evidence ${i + 1}`} className="w-full h-32 object-cover" />
-                <div className="px-2.5 py-1.5 text-[11px] text-slate-500">Site Record #{i + 1}</div>
+                <div className="px-2.5 py-1.5 text-[11px] text-slate-500 font-medium">Official Record #{i + 1}</div>
               </div>
             ))}
           </div>
         </Section>
+      </div>
+
+      {/* CITIZEN VERIFICATION SIGNALS & GROUND EVIDENCE (Phase 8 & 9) */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center">
+                <Camera size={16} />
+              </div>
+              <h2 className="text-base font-bold text-slate-900">
+                Citizen Verification Signals
+              </h2>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                Ground Evidence
+              </span>
+            </div>
+            <p className="text-xs text-slate-500">
+              Observations submitted by citizens on the ground with photo, GPS, and timestamp verification.
+            </p>
+          </div>
+
+          <Link
+            to={`/projects/${project.projectId}/report`}
+            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-sm self-start sm:self-auto"
+          >
+            <Camera size={14} />
+            <span>Verify This Project</span>
+          </Link>
+        </div>
+
+        {/* Evidence KPI Summary */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 text-xs">
+          <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-200">
+            <span className="text-slate-400 block text-[10px] mb-0.5">Total Reports</span>
+            <span className="text-xl font-extrabold text-slate-900">{citizenReports.length}</span>
+            <span className="text-[10px] text-slate-500 block mt-0.5">Ground submissions</span>
+          </div>
+
+          <div className="bg-emerald-50/50 rounded-2xl p-3.5 border border-emerald-200">
+            <span className="text-emerald-700 block text-[10px] mb-0.5">Location Consistent</span>
+            <span className="text-xl font-extrabold text-emerald-900">
+              {citizenReports.filter((r) => r.locationStatus === 'VERY_CLOSE' || r.locationStatus === 'CLOSE').length}
+            </span>
+            <span className="text-[10px] text-emerald-600 block mt-0.5">&le;500m of official site</span>
+          </div>
+
+          <div className="bg-amber-50/50 rounded-2xl p-3.5 border border-amber-200">
+            <span className="text-amber-700 block text-[10px] mb-0.5">Location Discrepancy</span>
+            <span className="text-xl font-extrabold text-amber-900">
+              {citizenReports.filter((r) => r.locationStatus === 'FAR' || r.locationStatus === 'FAR_FROM_PROJECT').length}
+            </span>
+            <span className="text-[10px] text-amber-600 block mt-0.5">&gt;1 km from project</span>
+          </div>
+
+          <div className="bg-blue-50/50 rounded-2xl p-3.5 border border-blue-200">
+            <span className="text-blue-700 block text-[10px] mb-0.5">Photo Evidence</span>
+            <span className="text-xl font-extrabold text-blue-900">
+              {citizenReports.filter((r) => r.imageUrl).length}
+            </span>
+            <span className="text-[10px] text-blue-600 block mt-0.5">Field site images</span>
+          </div>
+        </div>
+
+        {/* Citizen Reports List or Empty State */}
+        {citizenReports.length === 0 ? (
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 text-center my-4">
+            <Camera size={32} className="text-slate-300 mx-auto mb-2" />
+            <h4 className="font-bold text-slate-800 text-sm mb-1">No citizen reports recorded yet.</h4>
+            <p className="text-xs text-slate-500 max-w-sm mx-auto mb-4">
+              Be the first to inspect and verify this project on site. Your observation helps ensure public funds deliver real progress.
+            </p>
+            <Link
+              to={`/projects/${project.projectId}/report`}
+              className="inline-flex items-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm"
+            >
+              Verify This Project &rarr;
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {citizenReports.map((rep) => (
+              <div
+                key={rep.reportId}
+                className="bg-slate-50/80 border border-slate-200 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              >
+                <div className="flex items-start gap-3.5 flex-1 min-w-0">
+                  {rep.imageUrl ? (
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-slate-200 flex-shrink-0 bg-slate-200">
+                      <img src={rep.imageUrl} alt={rep.reportId} className="w-full h-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl border border-slate-200 flex-shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                      <Camera size={20} />
+                    </div>
+                  )}
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="font-mono text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                        {rep.reportId}
+                      </span>
+                      <span className="text-xs font-semibold text-slate-900">{rep.category}</span>
+                      <span className="text-[11px] text-slate-400">• {new Date(rep.submittedAt).toLocaleDateString()}</span>
+                    </div>
+
+                    <p className="text-xs text-slate-700 leading-relaxed line-clamp-2 mb-2">
+                      "{rep.description}"
+                    </p>
+
+                    <div className="flex flex-wrap items-center gap-2 text-[10px]">
+                      {rep.locationStatus !== 'UNKNOWN' && (
+                        <span
+                          className={`font-semibold px-2 py-0.5 rounded-full border ${
+                            rep.locationStatus === 'VERY_CLOSE' || rep.locationStatus === 'CLOSE'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                              : 'bg-amber-50 text-amber-700 border-amber-200'
+                          }`}
+                        >
+                          📍 Location {rep.locationStatus.replace(/_/g, ' ')}
+                          {rep.locationDistanceMeters !== undefined && (
+                            <span> ({rep.locationDistanceMeters < 1000 ? `${rep.locationDistanceMeters}m` : `${rep.locationDistanceKm} km`})</span>
+                          )}
+                        </span>
+                      )}
+
+                      {rep.imageSimilarity && rep.imageSimilarity.result === 'HIGH_SIMILARITY' && (
+                        <span className="bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full font-semibold">
+                          Similar Image Found
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-right flex-shrink-0 self-end md:self-center">
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
+                    Verification Signal
+                  </span>
+                  <span className="text-xs font-semibold text-blue-700">Available for Audit</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Mandatory Disclaimer */}
+        <div className="mt-6 p-3.5 bg-blue-50/60 border border-blue-200/70 rounded-2xl flex items-start gap-2.5 text-[11px] text-blue-900 leading-relaxed">
+          <Info size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-semibold text-blue-950">Ground Verification Notice: </span>
+            Citizen reports provide real-time field signals to aid surveillance. Public submissions do not expose exact citizen GPS coordinates. Final determination remains with authorized government bodies.
+          </div>
+        </div>
       </div>
     </div>
   );
