@@ -5,8 +5,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 
-// Phase 2
+// Phase 2 & 3
 import projectRoutes from './routes/projects.js';
+// Phase 4
+import adminRoutes from './routes/admin.js';
 
 // Future phases (uncomment when needed)
 // import reportRoutes    from './routes/reports.js';
@@ -33,8 +35,11 @@ app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'MPLAD-Sentinel backend is running' });
 });
 
-// ── Phase 2: Public project routes ────────────────────────────────────────────
+// ── Phase 2 & 3: Public project routes ────────────────────────────────────────
 app.use('/api/projects', projectRoutes);
+
+// ── Phase 4: Authority monitoring routes ───────────────────────────────────────
+app.use('/api/admin', adminRoutes);
 
 // ── Global error handler ──────────────────────────────────────────────────────
 app.use((err, req, res, next) => {

@@ -163,3 +163,108 @@ export interface UserLocation {
 export interface ProjectWithDistance extends Project {
   distance: number; // km
 }
+
+// ─── Phase 4 Authority Dashboard ──────────────────────────────────────────────
+
+export interface AttentionReason {
+  code: string;
+  label: string;
+}
+
+export interface AttentionProject {
+  _id: string;
+  projectId: string;
+  name: string;
+  state: string;
+  district: string;
+  constituency: string;
+  category: string;
+  sanctionedAmount: number;
+  releasedAmount: number;
+  expenditure: number;
+  expenditurePercentage: number;
+  physicalProgress: number;
+  progressSpendingDifference: number;
+  progressSpendingStatus: ProgressSpendingStatus;
+  status: ProjectStatus;
+  timelineStatus: TimelineStatus | string;
+  timelineLabel: string;
+  daysOverdue: number;
+  priorityScore: number;
+  reasons: AttentionReason[];
+  dataQualityWarnings?: string[];
+}
+
+export interface DistrictSummaryItem {
+  district: string;
+  state: string;
+  totalProjects: number;
+  ongoing: number;
+  completed: number;
+  delayed: number;
+  attentionCount: number;
+  totalSanctioned: number;
+  totalExpenditure: number;
+}
+
+export interface AdminSummaryData {
+  totalProjects: number;
+  ongoingProjects: number;
+  completedProjects: number;
+  delayedProjects: number;
+  progressSpendingGapProjects: number;
+  moderateGapProjects: number;
+  alignedProjects: number;
+  totalSanctionedAmount: number;
+  totalExpenditure: number;
+  totalRemainingAmount: number;
+  statusDistribution: { name: string; count: number; fill: string }[];
+  financialOverview: { name: string; amount: number; fill: string }[];
+  gapDistribution: { name: string; count: number; fill: string }[];
+  districtSummary: DistrictSummaryItem[];
+  lastUpdated: string;
+}
+
+export interface AdminSummaryResponse {
+  success: boolean;
+  data: AdminSummaryData;
+}
+
+export interface AdminAttentionResponse {
+  success: boolean;
+  count: number;
+  data: AttentionProject[];
+}
+
+export interface AdminProjectsFilters {
+  search?: string;
+  state?: string;
+  district?: string;
+  constituency?: string;
+  category?: string;
+  status?: string;
+  timelineStatus?: string;
+  progressSpendingStatus?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface AdminProjectsResponse {
+  success: boolean;
+  total: number;
+  page: number;
+  limit: number;
+  data: (Project & {
+    reasons?: AttentionReason[];
+    priorityScore?: number;
+    attentionRequired?: boolean;
+  })[];
+  filters: {
+    states: string[];
+    districts: string[];
+    categories: string[];
+    statuses: string[];
+    timelineStatuses: string[];
+    progressSpendingStatuses: string[];
+  };
+}

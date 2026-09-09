@@ -3,6 +3,10 @@ import type {
   ProjectListResponse,
   ProjectDetailResponse,
   ProjectIntelligenceResponse,
+  AdminSummaryResponse,
+  AdminAttentionResponse,
+  AdminProjectsFilters,
+  AdminProjectsResponse,
 } from '../types';
 
 const BASE = '/api';
@@ -15,6 +19,8 @@ async function apiFetch<T>(path: string): Promise<T> {
   }
   return res.json();
 }
+
+// ─── Public APIs ──────────────────────────────────────────────────────────────
 
 export async function getProjects(filters: ProjectFilters = {}): Promise<ProjectListResponse> {
   const params = new URLSearchParams();
@@ -33,4 +39,25 @@ export async function getProjectIntelligence(projectId: string): Promise<Project
 
 export async function checkHealth(): Promise<{ success: boolean; message: string }> {
   return apiFetch('/health');
+}
+
+// ─── Authority Admin APIs (Phase 4) ───────────────────────────────────────────
+
+export async function getAdminSummary(): Promise<AdminSummaryResponse> {
+  return apiFetch<AdminSummaryResponse>('/admin/summary');
+}
+
+export async function getAdminAttention(): Promise<AdminAttentionResponse> {
+  return apiFetch<AdminAttentionResponse>('/admin/attention');
+}
+
+export async function getAdminProjects(filters: AdminProjectsFilters = {}): Promise<AdminProjectsResponse> {
+  const params = new URLSearchParams();
+  Object.entries(filters).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '' && v !== 'All') {
+      params.set(k, String(v));
+    }
+  });
+  const qs = params.toString();
+  return apiFetch<AdminProjectsResponse>(`/admin/projects${qs ? `?${qs}` : ''}`);
 }

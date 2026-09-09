@@ -3,10 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Shield } from 'lucide-react';
 
 const NAV_LINKS = [
-  { to: '/',         label: 'Home'         },
-  { to: '/projects', label: 'Projects'     },
-  { to: '/nearby',   label: 'Find Near Me' },
-  { to: '/about',    label: 'About'        },
+  { to: '/',         label: 'Home'          },
+  { to: '/projects', label: 'Projects'      },
+  { to: '/nearby',   label: 'Find Near Me'  },
+  { to: '/about',    label: 'About'         },
+  { to: '/admin',    label: 'Authority View' },
 ];
 
 export default function Navbar() {

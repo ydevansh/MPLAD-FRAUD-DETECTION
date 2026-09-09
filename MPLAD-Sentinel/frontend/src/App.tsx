@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import ProjectDetails from './pages/ProjectDetails';
 import Nearby from './pages/Nearby';
 import About from './pages/About';
+import AuthorityDashboard from './pages/AuthorityDashboard';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/projects/:projectId" element={<ProjectDetails />} />
           <Route path="/nearby" element={<Nearby />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<AuthorityDashboard />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
