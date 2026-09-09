@@ -42,11 +42,6 @@ export default function Projects() {
       <div className="mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">Explore MPLADS Projects</h1>
         <p className="text-slate-500">Find projects, check their progress and see how public funds are being used.</p>
-        <div className="flex items-center gap-2 mt-2">
-          <span className="text-xs bg-amber-50 border border-amber-200 text-amber-700 px-2 py-0.5 rounded-full font-medium">
-            ⚠️ Prototype Data — not real government records
-          </span>
-        </div>
       </div>
 
       {/* Search + filter toggle row */}

@@ -16,11 +16,6 @@ export default function Home() {
       <section className="bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="max-w-2xl">
-            {/* Prototype badge */}
-            <span className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium px-3 py-1 rounded-full mb-6">
-              ⚠️ Prototype — Demo Data Only
-            </span>
-
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
               MPLAD-Sentinel
             </h1>

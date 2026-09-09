@@ -52,11 +52,6 @@ export default function ProjectCard({ project, distance }: Props) {
                 <AlertCircle size={10} /> Progress-Spending Gap
               </span>
             )}
-            {project.isPrototypeData && (
-              <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
-                Prototype
-              </span>
-            )}
           </div>
           <h3 className="font-semibold text-slate-900 text-sm leading-snug line-clamp-2">
             {project.name}

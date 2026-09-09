@@ -194,13 +194,6 @@ export default function ProjectDetails() {
         >
           <ArrowLeft size={16} /> Back to Projects
         </Link>
-        <div className="flex items-center gap-2">
-          {project.isPrototypeData && (
-            <span className="text-xs bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 rounded-full font-medium">
-              Prototype Data Only
-            </span>
-          )}
-        </div>
       </div>
 
       {/* Project Header Card */}
