@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { LocateFixed, MapPin, AlertCircle, RefreshCw, Layers, Compass, ExternalLink } from 'lucide-react';
+import { LocateFixed, MapPin, AlertCircle, RefreshCw, Layers, Compass, ExternalLink, Info } from 'lucide-react';
 import { useGeolocation, distanceKm } from '../hooks/useGeolocation';
 import { getProjects } from '../services/api';
 import type { Project, ProjectWithDistance, UserLocation } from '../types';
@@ -15,10 +15,11 @@ const PRESET_LOCATIONS: { name: string; state: string; lat: number; lng: number 
 ];
 
 const RADIUS_OPTIONS = [
+  { label: '1 km', value: 1 },
   { label: '5 km', value: 5 },
-  { label: '15 km', value: 15 },
+  { label: '10 km', value: 10 },
+  { label: '25 km', value: 25 },
   { label: '50 km', value: 50 },
-  { label: '150 km', value: 150 },
   { label: 'All', value: 99999 },
 ];
 
@@ -218,10 +219,16 @@ export default function Nearby() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs font-mono text-slate-500 mt-0.5">
-                  Lat: {effectiveLocation.latitude.toFixed(4)}, Lng: {effectiveLocation.longitude.toFixed(4)}
-                  {effectiveLocation.accuracy ? ` (±${Math.round(effectiveLocation.accuracy)}m)` : ''}
-                </p>
+                <div className="flex flex-wrap items-center gap-2 mt-1">
+                  <p className="text-xs font-mono text-slate-500">
+                    Lat: {effectiveLocation.latitude.toFixed(4)}, Lng: {effectiveLocation.longitude.toFixed(4)}
+                  </p>
+                  {effectiveLocation.accuracy ? (
+                    <span className="text-[11px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                      GPS accuracy: ±{Math.round(effectiveLocation.accuracy)} meters
+                    </span>
+                  ) : null}
+                </div>
               </div>
             </div>
 
@@ -261,7 +268,7 @@ export default function Nearby() {
           </div>
 
           {/* Preset quick switcher */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 text-xs">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-4 text-xs">
             <span className="text-slate-400 font-medium whitespace-nowrap">Switch location:</span>
             {PRESET_LOCATIONS.map((loc) => (
               <button
@@ -280,13 +287,28 @@ export default function Nearby() {
             ))}
           </div>
 
+          {/* GPS Proximity Disclaimer Notice */}
+          <div className="bg-blue-50/70 border border-blue-200/80 rounded-2xl p-4 flex items-start gap-3 text-xs text-blue-900 mb-6 shadow-sm">
+            <Info size={18} className="text-blue-600 mt-0.5 flex-shrink-0" />
+            <div className="leading-relaxed">
+              <span className="font-bold text-blue-950">GPS Verification Signal: </span>
+              GPS proximity is a verification signal and may be affected by location accuracy, device settings, or project coordinate quality.
+            </div>
+          </div>
+
           {/* Results Summary Bar */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-semibold text-slate-800">
-              Found{' '}
-              <span className="text-blue-700 font-bold">{filteredProjects.length}</span>{' '}
-              {filteredProjects.length === 1 ? 'project' : 'projects'}{' '}
-              {selectedRadius < 90000 ? `within ${selectedRadius} km` : 'in total'}
+              {selectedRadius < 90000 ? (
+                <>
+                  Showing projects within <span className="text-blue-700 font-bold">{selectedRadius} km</span>{' '}
+                  <span className="text-slate-500 font-normal">({filteredProjects.length} found)</span>
+                </>
+              ) : (
+                <>
+                  Showing all <span className="text-blue-700 font-bold">{filteredProjects.length}</span> projects sorted by distance
+                </>
+              )}
             </p>
 
             {/* View Mode Toggle */}
@@ -322,9 +344,9 @@ export default function Nearby() {
           {filteredProjects.length === 0 ? (
             <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center my-6">
               <MapPin size={36} className="text-slate-300 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-800 text-base mb-1">No Projects Within {selectedRadius} km</h3>
+              <h3 className="font-bold text-slate-800 text-base mb-1">No MPLADS projects found within this radius.</h3>
               <p className="text-xs text-slate-500 max-w-md mx-auto mb-4">
-                There are no prototype projects within this radius of your selected coordinates. Try widening your search radius or exploring another state.
+                No sanctioned works were detected within {selectedRadius} km of your coordinates. Try expanding your search radius or selecting another district.
               </p>
               <button
                 onClick={() => setSelectedRadius(99999)}

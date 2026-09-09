@@ -19,7 +19,10 @@ import {
   ShieldAlert,
   Info,
   ExternalLink,
+  LocateFixed,
 } from 'lucide-react';
+import MapView from '../components/MapView';
+import { useGeolocation, distanceKm } from '../hooks/useGeolocation';
 import {
   BarChart,
   Bar,
@@ -156,6 +159,35 @@ export default function ProjectDetails() {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [projectId]);
+
+  const { state: geoState, requestLocation } = useGeolocation();
+
+  const userLocation = geoState.status === 'success' ? geoState.location : null;
+  const hasValidCoords = Boolean(
+    project &&
+    project.latitude !== undefined &&
+    project.latitude !== null &&
+    project.latitude !== '' &&
+    project.longitude !== undefined &&
+    project.longitude !== null &&
+    project.longitude !== '' &&
+    !isNaN(Number(project.latitude)) &&
+    !isNaN(Number(project.longitude)) &&
+    Number(project.latitude) >= -90 &&
+    Number(project.latitude) <= 90 &&
+    Number(project.longitude) >= -180 &&
+    Number(project.longitude) <= 180
+  );
+
+  const userDistance =
+    userLocation && hasValidCoords && project
+      ? distanceKm(
+          userLocation.latitude,
+          userLocation.longitude,
+          Number(project.latitude),
+          Number(project.longitude)
+        )
+      : null;
 
   if (loading) {
     return (
@@ -906,23 +938,119 @@ export default function ProjectDetails() {
 
       {/* LOWER SECTION: Location & Photos */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        {/* Location Info */}
-        <Section title="Location & Administrative Details" icon={MapPin}>
-          <div className="divide-y divide-slate-100">
-            <Row label="Address"   value={project.address || '—'} />
-            <Row label="District"  value={project.district} />
-            <Row label="State"     value={project.state} />
-            <Row label="Latitude"  value={<span className="font-mono">{project.latitude}</span>} />
-            <Row label="Longitude" value={<span className="font-mono">{project.longitude}</span>} />
-          </div>
-          <div className="mt-4">
-            <Link
-              to="/nearby"
-              className="inline-flex items-center gap-1.5 text-xs text-blue-700 hover:text-blue-800 font-semibold"
-            >
-              Inspect nearby development projects on Interactive Map &rarr;
-            </Link>
-          </div>
+        {/* Official Project Location */}
+        <Section
+          title="Official Project Location"
+          subtitle="Geospatial positioning & field verification signal"
+          icon={MapPin}
+          badge={
+            hasValidCoords ? (
+              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                GPS Geocoded
+              </span>
+            ) : (
+              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                Coordinates Unavailable
+              </span>
+            )
+          }
+        >
+          {hasValidCoords ? (
+            <div className="space-y-3.5">
+              {/* Interactive Location Map */}
+              <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                <MapView
+                  projects={[project]}
+                  userLocation={userLocation}
+                  height="260px"
+                />
+              </div>
+
+              {/* Approximate Distance & Geolocation Button */}
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div>
+                  {userDistance !== null ? (
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block animate-pulse"></span>
+                      <p className="text-slate-800 font-medium">
+                        You are approximately{' '}
+                        <strong className="text-blue-700">
+                          {userDistance < 1
+                            ? `${Math.round(userDistance * 1000)} meters`
+                            : `${userDistance.toFixed(1)} km`}
+                        </strong>{' '}
+                        from this project.
+                        {userLocation?.accuracy ? (
+                          <span className="text-slate-500 font-normal ml-1">
+                            (GPS accuracy: ±{Math.round(userLocation.accuracy)}m)
+                          </span>
+                        ) : null}
+                      </p>
+                    </div>
+                  ) : geoState.status === 'loading' ? (
+                    <p className="text-slate-500 flex items-center gap-1.5">
+                      <Loader2 size={13} className="animate-spin text-blue-600" />
+                      Detecting your current location...
+                    </p>
+                  ) : (
+                    <p className="text-slate-600">
+                      Allow location access to check approximate distance from your device.
+                    </p>
+                  )}
+                </div>
+
+                {geoState.status !== 'success' && (
+                  <button
+                    onClick={requestLocation}
+                    disabled={geoState.status === 'loading'}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shadow-sm text-xs self-start sm:self-auto"
+                  >
+                    <LocateFixed size={13} />
+                    <span>Check Distance</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Mandatory GPS Disclaimer */}
+              <div className="bg-blue-50/60 border border-blue-200/70 rounded-xl p-3 flex items-start gap-2 text-[11px] text-blue-900 leading-relaxed">
+                <Info size={14} className="text-blue-600 mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-semibold text-blue-950">GPS Verification Signal: </span>
+                  GPS proximity is a verification signal and may be affected by location accuracy, device settings, or project coordinate quality.
+                </div>
+              </div>
+
+              {/* Coordinate Specs */}
+              <div className="divide-y divide-slate-100 text-xs">
+                <Row label="Address"   value={project.address || '—'} />
+                <Row label="District & State"  value={`${project.district}, ${project.state}`} />
+                <Row label="Latitude"  value={<span className="font-mono">{project.latitude}</span>} />
+                <Row label="Longitude" value={<span className="font-mono">{project.longitude}</span>} />
+              </div>
+
+              <div className="pt-1">
+                <Link
+                  to="/nearby"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-700 hover:text-blue-800 font-semibold"
+                >
+                  Inspect nearby development projects on Interactive Map &rarr;
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 text-center text-xs">
+              <AlertTriangle size={24} className="text-amber-600 mx-auto mb-2" />
+              <h4 className="font-semibold text-amber-900 text-sm mb-1">Location information unavailable.</h4>
+              <p className="text-amber-700 max-w-sm mx-auto mb-3">
+                Official GPS coordinates are not yet recorded for this project site. Marked as a Data Quality advisory.
+              </p>
+              <div className="divide-y divide-amber-100 border-t border-amber-200 pt-2 text-left">
+                <Row label="Address"  value={project.address || '—'} />
+                <Row label="District" value={project.district} />
+                <Row label="State"    value={project.state} />
+              </div>
+            </div>
+          )}
         </Section>
 
         {/* Official Photos */}

@@ -222,6 +222,12 @@ export interface AdminSummaryData {
   financialOverview: { name: string; amount: number; fill: string }[];
   gapDistribution: { name: string; count: number; fill: string }[];
   districtSummary: DistrictSummaryItem[];
+  locationCoverage?: {
+    totalProjects: number;
+    mappedProjects: number;
+    missingCoordinatesProjects: number;
+    coveragePercentage: number;
+  };
   lastUpdated: string;
 }
 
@@ -422,4 +428,37 @@ export interface PortfolioRiskData {
 export interface AdminRiskResponse {
   success: boolean;
   data: PortfolioRiskData;
+}
+
+// ─── Phase 7 — Geospatial & Location Verification ───────────────────────────
+
+export type ProximityStatus =
+  | 'VERY_CLOSE'
+  | 'CLOSE'
+  | 'NEARBY'
+  | 'FAR'
+  | 'FAR_FROM_PROJECT';
+
+export interface LocationVerificationData {
+  projectId: string;
+  projectLocation: {
+    latitude: number;
+    longitude: number;
+  };
+  providedLocation: {
+    latitude: number;
+    longitude: number;
+  };
+  distanceMeters: number;
+  distanceKm: number;
+  locationStatus: ProximityStatus;
+  message: string;
+  disclaimer: string;
+  geoConsistencySignal?: string;
+}
+
+export interface LocationVerificationResponse {
+  success: boolean;
+  data?: LocationVerificationData;
+  error?: string;
 }

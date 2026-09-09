@@ -11,6 +11,7 @@ import type {
   AdminAnomaliesResponse,
   ProjectRiskResponse,
   AdminRiskResponse,
+  LocationVerificationResponse,
 } from '../types';
 
 const BASE = '/api';
@@ -80,4 +81,14 @@ export async function getAdminAnomalies(): Promise<AdminAnomaliesResponse> {
 
 export async function getAdminRisk(): Promise<AdminRiskResponse> {
   return apiFetch<AdminRiskResponse>('/admin/risk');
+}
+
+export async function verifyProjectLocation(
+  projectId: string,
+  latitude: number,
+  longitude: number
+): Promise<LocationVerificationResponse> {
+  return apiFetch<LocationVerificationResponse>(
+    `/projects/${encodeURIComponent(projectId)}/location?latitude=${latitude}&longitude=${longitude}`
+  );
 }

@@ -12,7 +12,7 @@ export function useGeolocation() {
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
-      setState({ status: 'error', message: 'Geolocation is not supported by your browser.' });
+      setState({ status: 'error', message: 'Your browser does not support location services.' });
       return;
     }
     setState({ status: 'loading' });
@@ -27,11 +27,11 @@ export function useGeolocation() {
       }),
       err => {
         const messages: Record<number, string> = {
-          1: 'Location permission denied. Please allow location access and try again.',
-          2: 'Location unavailable. Please try again.',
-          3: 'Location request timed out. Please try again.',
+          1: 'Location permission was denied. You can still browse projects without nearby sorting.',
+          2: 'Unable to determine your location. Please try again.',
+          3: 'Unable to determine your location. Please try again.',
         };
-        setState({ status: 'error', message: messages[err.code] || 'Failed to get location.' });
+        setState({ status: 'error', message: messages[err.code] || 'Unable to determine your location. Please try again.' });
       },
       { enableHighAccuracy: true, timeout: 10000 }
     );
