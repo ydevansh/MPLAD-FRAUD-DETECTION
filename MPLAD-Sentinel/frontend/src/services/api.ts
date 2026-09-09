@@ -6,9 +6,10 @@ import type {
   AdminSummaryResponse,
   AdminAttentionResponse,
   AdminProjectsFilters,
-  AdminProjectsResponse,
   ProjectAnomaliesResponse,
   AdminAnomaliesResponse,
+  ProjectRiskResponse,
+  AdminRiskResponse,
 } from '../types';
 
 const BASE = '/api';
@@ -43,11 +44,15 @@ export async function getProjectAnomalies(projectId: string): Promise<ProjectAno
   return apiFetch<ProjectAnomaliesResponse>(`/projects/${projectId}/anomalies`);
 }
 
+export async function getProjectRisk(projectId: string): Promise<ProjectRiskResponse> {
+  return apiFetch<ProjectRiskResponse>(`/projects/${projectId}/risk`);
+}
+
 export async function checkHealth(): Promise<{ success: boolean; message: string }> {
   return apiFetch('/health');
 }
 
-// ─── Authority Admin APIs (Phase 4 & 5) ─────────────────────────────────────────
+// ─── Authority Admin APIs (Phase 4, 5 & 6) ─────────────────────────────────────
 
 export async function getAdminSummary(): Promise<AdminSummaryResponse> {
   return apiFetch<AdminSummaryResponse>('/admin/summary');
@@ -70,4 +75,8 @@ export async function getAdminProjects(filters: AdminProjectsFilters = {}): Prom
 
 export async function getAdminAnomalies(): Promise<AdminAnomaliesResponse> {
   return apiFetch<AdminAnomaliesResponse>('/admin/anomalies');
+}
+
+export async function getAdminRisk(): Promise<AdminRiskResponse> {
+  return apiFetch<AdminRiskResponse>('/admin/risk');
 }

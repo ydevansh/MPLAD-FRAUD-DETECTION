@@ -178,13 +178,13 @@ const projectsData = [
     constituency: 'Lucknow',
     category: 'Road Construction',
     sanctionedAmount: 92.0,    // Substantially higher than UP-001 (40L) and UP-007 (36L)
-    releasedAmount: 85.0,
-    expenditure: 78.0,
-    physicalProgress: 60,
-    status: 'Ongoing',
+    releasedAmount: 70.0,
+    expenditure: 78.0,         // 84.8% expenditure, spent > released (+20)
+    physicalProgress: 60,       // 60% progress -> moderate gap (+15)
+    status: 'Delayed',
     sanctionDate: new Date('2024-09-01'),
     startDate: new Date('2024-10-05'),
-    expectedCompletionDate: new Date('2026-10-30'),
+    expectedCompletionDate: new Date('2025-04-30'), // Overdue by >30 days (+15)
     actualCompletionDate: null,
     financialYear: '2024-25',
     implementingAgency: 'PWD Division 1',

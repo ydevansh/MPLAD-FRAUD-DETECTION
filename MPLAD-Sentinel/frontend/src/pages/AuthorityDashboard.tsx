@@ -41,6 +41,7 @@ import {
   getAdminAttention,
   getAdminProjects,
   getAdminAnomalies,
+  getAdminRisk,
 } from '../services/api';
 import type {
   AdminSummaryData,
@@ -48,6 +49,8 @@ import type {
   Project,
   AdminProjectsFilters,
   AdminAnomaliesSummary,
+  PortfolioRiskData,
+  RiskScoreLevel,
 } from '../types';
 
 function fmtCurrency(lakhs: number | undefined | null): string {

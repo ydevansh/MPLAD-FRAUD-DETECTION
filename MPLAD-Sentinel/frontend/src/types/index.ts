@@ -351,3 +351,75 @@ export interface AdminAnomaliesResponse {
   success: boolean;
   data: AdminAnomaliesSummary;
 }
+
+// ─── Phase 6: Explainable Risk Score & Priority Engine ────────────────────────
+
+export type RiskScoreLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+
+export interface RiskScoreReason {
+  type: string;
+  points: number;
+  title: string;
+  explanation: string;
+  values?: any;
+  relatedProjects?: RelatedSimilarProject[];
+}
+
+export interface ProjectRiskData {
+  projectId: string;
+  projectName: string;
+  district: string;
+  state: string;
+  category: string;
+  status: string;
+  sanctionedAmount: number;
+  expenditurePercentage: number;
+  physicalProgress: number;
+  riskScore: number;
+  riskLevel: RiskScoreLevel;
+  reasons: RiskScoreReason[];
+  recommendedAction: string;
+  disclaimer: string;
+  analyzedAt: string;
+}
+
+export interface ProjectRiskResponse {
+  success: boolean;
+  data: ProjectRiskData;
+}
+
+export interface PortfolioRiskProjectItem {
+  projectId: string;
+  name: string;
+  district: string;
+  state: string;
+  category: string;
+  status: string;
+  sanctionedAmount: number;
+  expenditurePercentage: number;
+  physicalProgress: number;
+  riskScore: number;
+  riskLevel: RiskScoreLevel;
+  topReason: string;
+  reasonsCount: number;
+  reasons: RiskScoreReason[];
+  recommendedAction: string;
+}
+
+export interface PortfolioRiskData {
+  totalProjects: number;
+  riskDistribution: {
+    low: number;
+    medium: number;
+    high: number;
+    critical: number;
+  };
+  projects: PortfolioRiskProjectItem[];
+  disclaimer: string;
+  analyzedAt: string;
+}
+
+export interface AdminRiskResponse {
+  success: boolean;
+  data: PortfolioRiskData;
+}

@@ -30,8 +30,20 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import { getProjectById, getProjectIntelligence, getProjectAnomalies } from '../services/api';
-import type { Project, RiskLevel, ProjectStatus, ProjectIntelligence, ProjectAnomaliesData } from '../types';
+import {
+  getProjectById,
+  getProjectIntelligence,
+  getProjectAnomalies,
+  getProjectRisk,
+} from '../services/api';
+import type {
+  Project,
+  RiskLevel,
+  ProjectStatus,
+  ProjectIntelligence,
+  ProjectAnomaliesData,
+  ProjectRiskData,
+} from '../types';
 
 const RISK_CONFIG: Record<RiskLevel, { label: string; badge: string; bar: string }> = {
   Low:      { label: '🟢 Low Risk',      badge: 'bg-green-50 text-green-700 border-green-200',   bar: '#16a34a' },
@@ -112,6 +124,7 @@ export default function ProjectDetails() {
   const [project, setProject] = useState<Project | null>(null);
   const [intel, setIntel]     = useState<ProjectIntelligence | null>(null);
   const [anomaliesData, setAnomaliesData] = useState<ProjectAnomaliesData | null>(null);
+  const [riskData, setRiskData]           = useState<ProjectRiskData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
 
@@ -124,8 +137,9 @@ export default function ProjectDetails() {
       getProjectById(projectId),
       getProjectIntelligence(projectId).catch(() => null),
       getProjectAnomalies(projectId).catch(() => null),
+      getProjectRisk(projectId).catch(() => null),
     ])
-      .then(([projRes, intelRes, anomalyRes]) => {
+      .then(([projRes, intelRes, anomalyRes, riskRes]) => {
         setProject(projRes.data);
         if (intelRes && intelRes.data) {
           setIntel(intelRes.data);
@@ -134,6 +148,9 @@ export default function ProjectDetails() {
         }
         if (anomalyRes && anomalyRes.data) {
           setAnomaliesData(anomalyRes.data);
+        }
+        if (riskRes && riskRes.data) {
+          setRiskData(riskRes.data);
         }
       })
       .catch((err) => setError(err.message))
@@ -267,6 +284,173 @@ export default function ProjectDetails() {
           </div>
         </div>
       )}
+
+      {/* Phase 6: Explainable AI Risk Assessment */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-6 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+              (riskData?.riskScore ?? 0) >= 81
+                ? 'bg-red-50 text-red-600'
+                : (riskData?.riskScore ?? 0) >= 61
+                ? 'bg-orange-50 text-orange-600'
+                : (riskData?.riskScore ?? 0) >= 31
+                ? 'bg-amber-50 text-amber-600'
+                : 'bg-emerald-50 text-emerald-600'
+            }`}>
+              <ShieldAlert size={22} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="font-bold text-slate-900 text-base sm:text-lg">
+                  AI-Assisted Risk Assessment
+                </h2>
+                <span className="text-[11px] bg-slate-100 text-slate-600 font-mono px-2 py-0.5 rounded">
+                  Explainable Priority Engine
+                </span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Continuous algorithmic monitoring score (0–100) determining inspection and review priority
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${
+              (riskData?.riskLevel ?? 'LOW') === 'CRITICAL'
+                ? 'bg-red-50 text-red-700 border-red-200'
+                : (riskData?.riskLevel ?? 'LOW') === 'HIGH'
+                ? 'bg-orange-50 text-orange-700 border-orange-200'
+                : (riskData?.riskLevel ?? 'LOW') === 'MEDIUM'
+                ? 'bg-amber-50 text-amber-700 border-amber-200'
+                : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+            }`}>
+              {riskData?.riskLevel === 'CRITICAL'
+                ? '🔴 Critical Risk Priority'
+                : riskData?.riskLevel === 'HIGH'
+                ? '🟠 High Risk Priority'
+                : riskData?.riskLevel === 'MEDIUM'
+                ? '🟡 Medium Risk Priority'
+                : '🟢 Low Risk Priority'}
+            </span>
+          </div>
+        </div>
+
+        {/* Score & Progress Gauge */}
+        <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl p-5 mb-6">
+          <div className="flex flex-wrap items-end justify-between gap-3 mb-3">
+            <div>
+              <span className="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">
+                Monitoring Risk Score
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                  {riskData?.riskScore ?? 0}
+                </span>
+                <span className="text-sm font-semibold text-slate-400">/ 100</span>
+              </div>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs">
+              <span className="text-slate-500 block text-[11px]">Recommended Action:</span>
+              <span className="font-bold text-slate-900">
+                {riskData?.recommendedAction || 'Routine monitoring.'}
+              </span>
+            </div>
+          </div>
+
+          {/* Horizontal Progress Bar */}
+          <div className="w-full bg-slate-200 rounded-full h-3 relative overflow-hidden mb-2">
+            <div
+              className={`h-full rounded-full transition-all duration-500 ${
+                (riskData?.riskScore ?? 0) >= 81
+                  ? 'bg-red-600'
+                  : (riskData?.riskScore ?? 0) >= 61
+                  ? 'bg-orange-500'
+                  : (riskData?.riskScore ?? 0) >= 31
+                  ? 'bg-amber-500'
+                  : 'bg-emerald-500'
+              }`}
+              style={{ width: `${Math.min(100, Math.max(3, riskData?.riskScore ?? 0))}%` }}
+            />
+          </div>
+
+          {/* Scale Labels */}
+          <div className="flex justify-between text-[10px] text-slate-400 font-medium px-0.5">
+            <span>0 (Low)</span>
+            <span className="hidden sm:inline">30 (Medium)</span>
+            <span className="hidden sm:inline">60 (High)</span>
+            <span>80+ (Critical)</span>
+            <span>100</span>
+          </div>
+        </div>
+
+        {/* Explainable Breakdown: Why was this project flagged? */}
+        <div className="mb-5">
+          <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center justify-between">
+            <span>Score Breakdown & Contributing Signals</span>
+            <span className="text-xs font-normal text-slate-500">
+              {riskData?.reasons.length ?? 0} Contributing {riskData?.reasons.length === 1 ? 'Factor' : 'Factors'}
+            </span>
+          </h3>
+
+          {!riskData || riskData.reasons.length === 0 ? (
+            <div className="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 flex items-start gap-3 text-emerald-950 text-xs">
+              <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold mb-0.5">Baseline Monitoring — No Risk Points Assigned</p>
+                <p className="text-emerald-800">
+                  Financial releases and expenditures are proportionate to physical progress, project timelines are intact, and no cost anomalies were detected.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-2.5">
+              {riskData.reasons.map((r, i) => (
+                <div
+                  key={i}
+                  className="bg-slate-50/70 border border-slate-200 rounded-xl p-3.5 flex items-start justify-between gap-3 text-xs"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-slate-900">{r.title}</span>
+                      <span className="font-mono text-[10px] text-slate-400 bg-white px-1.5 py-0.5 rounded border border-slate-200">
+                        {r.type}
+                      </span>
+                    </div>
+                    <p className="text-slate-600 leading-relaxed">{r.explanation}</p>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <span className="inline-block bg-white text-slate-800 border border-slate-200 px-2.5 py-1 rounded-lg font-mono font-bold text-xs shadow-2xs">
+                      +{r.points}
+                    </span>
+                  </div>
+                </div>
+              ))}
+
+              {/* Tally Total Row */}
+              <div className="bg-white border border-slate-200 rounded-xl p-3 flex justify-between items-center text-xs font-semibold text-slate-800">
+                <span>Calculated Risk Score Total</span>
+                <span className="font-mono font-bold text-sm text-blue-700">
+                  {riskData.riskScore} / 100
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Operational Disclaimer */}
+        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3 text-xs text-slate-600">
+          <Info size={16} className="text-slate-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-bold text-slate-800">Monitoring Disclaimer: </span>
+            <span>
+              {riskData?.disclaimer ||
+                'The risk score is an automated monitoring indicator based on available project data. It is not proof of fraud. Final verification and decisions remain with authorities.'}
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Phase 5: AI-Assisted Monitoring Signals / Anomaly Detection */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-6 shadow-sm">
