@@ -65,6 +65,9 @@ export default function AuthorityDashboard() {
   const [projects, setProjects]     = useState<any[]>([]);
   const [anomaliesSummary, setAnomaliesSummary] = useState<AdminAnomaliesSummary | null>(null);
   const [anomalySeverityFilter, setAnomalySeverityFilter] = useState<'ALL' | 'HIGH' | 'MEDIUM'>('ALL');
+  const [portfolioRisk, setPortfolioRisk] = useState<PortfolioRiskData | null>(null);
+  const [riskLevelFilter, setRiskLevelFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
+  const [minRiskScore, setMinRiskScore] = useState<number>(0);
   const [filtersData, setFiltersData] = useState<{
     states: string[];
     districts: string[];
@@ -89,17 +92,19 @@ export default function AuthorityDashboard() {
       setLoading(true);
       setError(null);
 
-      const [sumRes, attRes, projRes, anomRes] = await Promise.all([
+      const [sumRes, attRes, projRes, anomRes, riskRes] = await Promise.all([
         getAdminSummary(),
         getAdminAttention(),
         getAdminProjects(),
         getAdminAnomalies().catch(() => null),
+        getAdminRisk().catch(() => null),
       ]);
 
       if (sumRes.data) setSummary(sumRes.data);
       if (attRes.data) setAttention(attRes.data);
       if (projRes.data) setProjects(projRes.data);
       if (anomRes && anomRes.data) setAnomaliesSummary(anomRes.data);
+      if (riskRes && riskRes.data) setPortfolioRisk(riskRes.data);
       if (projRes.filters) {
         setFiltersData({
           states: projRes.filters.states || [],
@@ -273,7 +278,231 @@ export default function AuthorityDashboard() {
         </div>
       )}
 
-      {/* ── 3. PRIORITY FIELD VERIFICATION QUEUE ("Projects Needing Attention") ── */}
+      {/* ── 3. RISK OVERVIEW & HIGH PRIORITY PROJECTS (Phase 6) ────────────────── */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                <ShieldAlert size={20} />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-slate-900">
+                    Risk Overview & Verification Priorities
+                  </h2>
+                  <span className="text-[11px] bg-red-50 text-red-700 border border-red-200 font-bold px-2 py-0.5 rounded-full">
+                    Score Scale: 0–100
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                  Automated explainable monitoring indicator calibrating field inspection priorities based on multi-factor data signals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Dynamic Risk Level Cards */}
+        {portfolioRisk && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-4">
+              <span className="text-xs text-emerald-800 font-semibold block mb-1">LOW (0–30)</span>
+              <span className="text-2xl font-extrabold text-emerald-900">
+                {portfolioRisk.riskDistribution.low} Projects
+              </span>
+              <span className="text-[10px] text-emerald-700 block mt-0.5">Routine monitoring</span>
+            </div>
+
+            <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-4">
+              <span className="text-xs text-amber-800 font-semibold block mb-1">MEDIUM (31–60)</span>
+              <span className="text-2xl font-extrabold text-amber-900">
+                {portfolioRisk.riskDistribution.medium} Projects
+              </span>
+              <span className="text-[10px] text-amber-700 block mt-0.5">Closer review advised</span>
+            </div>
+
+            <div className="bg-orange-50/60 border border-orange-200 rounded-2xl p-4">
+              <span className="text-xs text-orange-800 font-semibold block mb-1">HIGH (61–80)</span>
+              <span className="text-2xl font-extrabold text-orange-900">
+                {portfolioRisk.riskDistribution.high} Projects
+              </span>
+              <span className="text-[10px] text-orange-700 block mt-0.5">Priority review</span>
+            </div>
+
+            <div className="bg-red-50/60 border border-red-200 rounded-2xl p-4">
+              <span className="text-xs text-red-800 font-semibold block mb-1">CRITICAL (81–100)</span>
+              <span className="text-2xl font-extrabold text-red-900">
+                {portfolioRisk.riskDistribution.critical} Projects
+              </span>
+              <span className="text-[10px] text-red-700 block mt-0.5">Field inspection queue</span>
+            </div>
+          </div>
+        )}
+
+        {/* Visual Chart + Priority Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          {/* Recharts Chart: Projects by Risk Level */}
+          <div className="bg-slate-50/70 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1 flex items-center gap-2">
+                <BarChart3 size={16} className="text-blue-600" />
+                Projects by Risk Level
+              </h3>
+              <p className="text-xs text-slate-400 mb-4">Portfolio distribution across 4 monitoring tiers</p>
+            </div>
+
+            <div className="h-52 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={[
+                    { name: 'Low', count: portfolioRisk?.riskDistribution.low ?? 0, fill: '#10b981' },
+                    { name: 'Medium', count: portfolioRisk?.riskDistribution.medium ?? 0, fill: '#f59e0b' },
+                    { name: 'High', count: portfolioRisk?.riskDistribution.high ?? 0, fill: '#f97316' },
+                    { name: 'Critical', count: portfolioRisk?.riskDistribution.critical ?? 0, fill: '#ef4444' },
+                  ]}
+                  margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} />
+                  <YAxis tick={{ fontSize: 11, fill: '#64748b' }} />
+                  <Tooltip
+                    formatter={(v: any) => [`${v} Projects`, 'Total']}
+                    contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12px' }}
+                  />
+                  <Bar dataKey="count" radius={[6, 6, 0, 0]}>
+                    <Cell fill="#10b981" />
+                    <Cell fill="#f59e0b" />
+                    <Cell fill="#f97316" />
+                    <Cell fill="#ef4444" />
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="flex justify-around text-[10px] text-slate-400 pt-2 border-t border-slate-200 mt-2">
+              <span className="text-emerald-700 font-semibold">Low (0-30)</span>
+              <span className="text-amber-700 font-semibold">Med (31-60)</span>
+              <span className="text-orange-700 font-semibold">High (61-80)</span>
+              <span className="text-red-700 font-semibold">Crit (81-100)</span>
+            </div>
+          </div>
+
+          {/* High Priority Projects Surveillance Table */}
+          <div className="lg:col-span-2 space-y-4">
+            {/* Filter controls */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+                {(['ALL', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'] as const).map((lvl) => (
+                  <button
+                    key={lvl}
+                    onClick={() => setRiskLevelFilter(lvl)}
+                    className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
+                      riskLevelFilter === lvl
+                        ? 'bg-white text-slate-900 shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    {lvl === 'ALL' ? 'All Tiers' : lvl}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-slate-500">
+                <span>Min Score:</span>
+                <select
+                  value={minRiskScore}
+                  onChange={(e) => setMinRiskScore(Number(e.target.value))}
+                  className="bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs font-semibold text-slate-700"
+                >
+                  <option value={0}>All Scores (0+)</option>
+                  <option value={31}>Medium+ (31+)</option>
+                  <option value={61}>High+ (61+)</option>
+                  <option value={81}>Critical Only (81+)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto rounded-2xl border border-slate-200">
+              <table className="w-full text-left text-xs text-slate-600">
+                <thead className="bg-slate-50 border-b border-slate-200 font-semibold text-slate-700 uppercase tracking-wider text-[11px]">
+                  <tr>
+                    <th className="py-2.5 px-3">Project</th>
+                    <th className="py-2.5 px-3 text-center">Score</th>
+                    <th className="py-2.5 px-3 text-center">Level</th>
+                    <th className="py-2.5 px-3">Primary Factor</th>
+                    <th className="py-2.5 px-3">Recommended Action</th>
+                    <th className="py-2.5 px-3 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 bg-white">
+                  {portfolioRisk?.projects
+                    .filter((p) => {
+                      if (riskLevelFilter !== 'ALL' && p.riskLevel !== riskLevelFilter) return false;
+                      if (p.riskScore < minRiskScore) return false;
+                      return true;
+                    })
+                    .slice(0, 7)
+                    .map((p) => (
+                      <tr key={p.projectId} className="hover:bg-slate-50/80 transition-colors">
+                        <td className="py-2.5 px-3 max-w-[200px]">
+                          <span className="font-mono text-[10px] font-bold text-slate-500 mr-1.5">{p.projectId}</span>
+                          <span className="font-semibold text-slate-900 line-clamp-1">{p.name}</span>
+                          <span className="text-[10px] text-slate-400">{p.district}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className="font-extrabold text-sm font-mono text-slate-900">{p.riskScore}</span>
+                          <span className="text-[10px] text-slate-400">/100</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold border ${
+                            p.riskLevel === 'CRITICAL'
+                              ? 'bg-red-50 text-red-700 border-red-200'
+                              : p.riskLevel === 'HIGH'
+                              ? 'bg-orange-50 text-orange-700 border-orange-200'
+                              : p.riskLevel === 'MEDIUM'
+                              ? 'bg-amber-50 text-amber-700 border-amber-200'
+                              : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          }`}>
+                            {p.riskLevel}
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 max-w-[180px]">
+                          <span className="line-clamp-1 font-medium text-slate-800">{p.topReason}</span>
+                        </td>
+                        <td className="py-2.5 px-3">
+                          <span className="text-slate-600 font-medium">{p.recommendedAction}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-right">
+                          <Link
+                            to={`/projects/${p.projectId}`}
+                            className="inline-flex items-center gap-1 text-blue-700 hover:text-blue-800 font-semibold"
+                          >
+                            View <ArrowUpRight size={12} />
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* Operational Disclaimer */}
+        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3 text-xs text-slate-600">
+          <Info size={16} className="text-slate-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-bold text-slate-800">Operational Disclaimer: </span>
+            <span>
+              {portfolioRisk?.disclaimer ||
+                'The risk score is an automated monitoring indicator based on available project data. It is not proof of fraud. Final verification and decisions remain with authorities.'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 4. PRIORITY FIELD VERIFICATION QUEUE ("Projects Needing Attention") ── */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
           <div>

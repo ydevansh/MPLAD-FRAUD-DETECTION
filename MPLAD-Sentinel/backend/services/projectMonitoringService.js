@@ -83,6 +83,8 @@ export async function getAdminSummary() {
   let significantGapCount = 0;
   let moderateGapCount = 0;
   let alignedCount = 0;
+  let mappedCoordinatesCount = 0;
+  let missingCoordinatesCount = 0;
 
   const districtMap = new Map();
 
@@ -110,6 +112,29 @@ export async function getAdminSummary() {
       moderateGapCount++;
     } else {
       alignedCount++;
+    }
+
+    // Check geospatial mapping status
+    const lat = Number(p.latitude);
+    const lon = Number(p.longitude);
+    const hasValidCoords =
+      p.latitude !== undefined &&
+      p.latitude !== null &&
+      p.latitude !== '' &&
+      p.longitude !== undefined &&
+      p.longitude !== null &&
+      p.longitude !== '' &&
+      !isNaN(lat) &&
+      !isNaN(lon) &&
+      lat >= -90 &&
+      lat <= 90 &&
+      lon >= -180 &&
+      lon <= 180;
+
+    if (hasValidCoords) {
+      mappedCoordinatesCount++;
+    } else {
+      missingCoordinatesCount++;
     }
 
     // District breakdown aggregation
@@ -184,6 +209,14 @@ export async function getAdminSummary() {
       { name: 'Moderate Gap',    count: moderateGapCount,    fill: '#eab308' },
       { name: 'Significant Gap', count: significantGapCount, fill: '#ea580c' },
     ],
+
+    // Geospatial data quality & coverage
+    locationCoverage: {
+      totalProjects: projects.length,
+      mappedProjects: mappedCoordinatesCount,
+      missingCoordinatesProjects: missingCoordinatesCount,
+      coveragePercentage: projects.length > 0 ? Math.round((mappedCoordinatesCount / projects.length) * 100) : 0,
+    },
 
     districtSummary,
     lastUpdated: new Date().toISOString(),

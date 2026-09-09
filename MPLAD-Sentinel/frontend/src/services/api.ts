@@ -6,6 +6,7 @@ import type {
   AdminSummaryResponse,
   AdminAttentionResponse,
   AdminProjectsFilters,
+  AdminProjectsResponse,
   ProjectAnomaliesResponse,
   AdminAnomaliesResponse,
   ProjectRiskResponse,

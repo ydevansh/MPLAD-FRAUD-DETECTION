@@ -7,6 +7,11 @@ import {
 } from '../services/projectIntelligenceService.js';
 import { detectAnomalies } from '../services/anomalyDetectionService.js';
 import { calculateRiskScore } from '../services/riskScoringService.js';
+import {
+  verifyProjectLocationConsistency,
+  validateCoordinates,
+  evaluateCoordinateDataQuality,
+} from '../services/geospatialService.js';
 
 // GET /api/projects
 export const getAllProjects = async (req, res) => {
@@ -192,5 +197,58 @@ export const getProjectRisk = async (req, res) => {
   } catch (err) {
     console.error('[getProjectRisk]', err);
     res.status(500).json({ success: false, error: 'Failed to calculate project risk score' });
+  }
+};
+
+// GET /api/projects/:projectId/location?latitude=...&longitude=...
+export const getProjectLocationVerification = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const { latitude, longitude } = req.query;
+
+    if (latitude === undefined || longitude === undefined || latitude === '' || longitude === '') {
+      return res.status(400).json({
+        success: false,
+        error: 'Both latitude and longitude query parameters are required.',
+      });
+    }
+
+    const val = validateCoordinates(latitude, longitude);
+    if (!val.valid) {
+      return res.status(400).json({
+        success: false,
+        error: val.message,
+      });
+    }
+
+    const project = await Project.findOne({
+      $or: [
+        { projectId },
+        { _id: projectId.match(/^[0-9a-fA-F]{24}$/) ? projectId : null },
+      ],
+    }).lean();
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        error: `Project '${projectId}' not found`,
+      });
+    }
+
+    // Check project coordinate data quality
+    const projectCoordVal = validateCoordinates(project.latitude, project.longitude);
+    if (!projectCoordVal.valid) {
+      return res.status(422).json({
+        success: false,
+        error: 'Project location data is invalid or unavailable.',
+        dataQualityWarnings: evaluateCoordinateDataQuality(project),
+      });
+    }
+
+    const verificationResult = verifyProjectLocationConsistency(project, latitude, longitude);
+    return res.json(verificationResult);
+  } catch (err) {
+    console.error('[getProjectLocationVerification]', err);
+    res.status(500).json({ success: false, error: 'Failed to verify project location' });
   }
 };

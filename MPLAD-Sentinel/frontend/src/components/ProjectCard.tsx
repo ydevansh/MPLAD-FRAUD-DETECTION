@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import { MapPin, TrendingUp, ChevronRight, Clock, AlertCircle } from 'lucide-react';
 import type { Project, RiskLevel, ProjectStatus } from '../types';
 
-const RISK: Record<RiskLevel, { label: string; badge: string }> = {
-  Low:      { label: '🟢 Low Risk',      badge: 'bg-green-50 text-green-700 border-green-200'   },
-  Medium:   { label: '🟡 Medium Risk',   badge: 'bg-yellow-50 text-yellow-700 border-yellow-200'},
-  High:     { label: '🟠 High Risk',     badge: 'bg-orange-50 text-orange-700 border-orange-200'},
-  Critical: { label: '🔴 Critical Risk', badge: 'bg-red-50 text-red-700 border-red-200'         },
+const getRiskConfig = (level?: string) => {
+  const norm = (level || 'LOW').toUpperCase();
+  if (norm === 'CRITICAL') return { label: 'Critical Risk', badge: 'bg-red-50 text-red-700 border-red-200' };
+  if (norm === 'HIGH')     return { label: 'High Risk',     badge: 'bg-orange-50 text-orange-700 border-orange-200' };
+  if (norm === 'MEDIUM')   return { label: 'Medium Risk',   badge: 'bg-amber-50 text-amber-700 border-amber-200' };
+  return { label: 'Low Risk', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
 };
 
 const STATUS: Record<ProjectStatus, string> = {
@@ -27,8 +28,8 @@ interface Props {
 }
 
 export default function ProjectCard({ project, distance }: Props) {
-  const risk   = RISK[project.riskLevel]   ?? RISK.Low;
-  const status = STATUS[project.status]    ?? STATUS.Sanctioned;
+  const risk   = getRiskConfig(project.riskLevel);
+  const status = STATUS[project.status] ?? STATUS.Sanctioned;
 
   const spentPct = project.expenditurePercentage !== undefined
     ? project.expenditurePercentage
@@ -58,9 +59,14 @@ export default function ProjectCard({ project, distance }: Props) {
           </h3>
           <p className="text-xs text-slate-400 font-mono mt-0.5">{project.projectId}</p>
         </div>
-        <span className={`flex-shrink-0 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${risk.badge}`}>
-          {risk.label}
-        </span>
+        <div className="flex flex-col items-end flex-shrink-0">
+          <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${risk.badge}`}>
+            {project.riskScore !== undefined ? `Risk: ${project.riskScore}/100` : risk.label}
+          </span>
+          <span className="text-[10px] font-semibold text-slate-400 mt-0.5 uppercase tracking-wide">
+            {project.riskLevel}
+          </span>
+        </div>
       </div>
 
       {/* Location & Distance */}
