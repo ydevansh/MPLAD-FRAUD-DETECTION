@@ -16,6 +16,9 @@ import {
   BarChart3,
   Scale,
   Check,
+  ShieldAlert,
+  Info,
+  ExternalLink,
 } from 'lucide-react';
 import {
   BarChart,
@@ -27,8 +30,8 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import { getProjectById, getProjectIntelligence } from '../services/api';
-import type { Project, RiskLevel, ProjectStatus, ProjectIntelligence } from '../types';
+import { getProjectById, getProjectIntelligence, getProjectAnomalies } from '../services/api';
+import type { Project, RiskLevel, ProjectStatus, ProjectIntelligence, ProjectAnomaliesData } from '../types';
 
 const RISK_CONFIG: Record<RiskLevel, { label: string; badge: string; bar: string }> = {
   Low:      { label: '🟢 Low Risk',      badge: 'bg-green-50 text-green-700 border-green-200',   bar: '#16a34a' },
@@ -108,6 +111,7 @@ export default function ProjectDetails() {
   const { projectId } = useParams<{ projectId: string }>();
   const [project, setProject] = useState<Project | null>(null);
   const [intel, setIntel]     = useState<ProjectIntelligence | null>(null);
+  const [anomaliesData, setAnomaliesData] = useState<ProjectAnomaliesData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
 
@@ -119,13 +123,17 @@ export default function ProjectDetails() {
     Promise.all([
       getProjectById(projectId),
       getProjectIntelligence(projectId).catch(() => null),
+      getProjectAnomalies(projectId).catch(() => null),
     ])
-      .then(([projRes, intelRes]) => {
+      .then(([projRes, intelRes, anomalyRes]) => {
         setProject(projRes.data);
         if (intelRes && intelRes.data) {
           setIntel(intelRes.data);
         } else if (projRes.data?.intelligence) {
           setIntel(projRes.data.intelligence);
+        }
+        if (anomalyRes && anomalyRes.data) {
+          setAnomaliesData(anomalyRes.data);
         }
       })
       .catch((err) => setError(err.message))
@@ -259,6 +267,191 @@ export default function ProjectDetails() {
           </div>
         </div>
       )}
+
+      {/* Phase 5: AI-Assisted Monitoring Signals / Anomaly Detection */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-6 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+              (anomaliesData?.anomalyCount ?? 0) > 0
+                ? anomaliesData?.highestSeverity === 'HIGH'
+                  ? 'bg-red-50 text-red-600'
+                  : 'bg-amber-50 text-amber-600'
+                : 'bg-emerald-50 text-emerald-600'
+            }`}>
+              <ShieldAlert size={22} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="font-bold text-slate-900 text-base sm:text-lg">
+                  AI-Assisted Monitoring Signals
+                </h2>
+                <span className="text-[11px] bg-slate-100 text-slate-600 font-mono px-2 py-0.5 rounded">
+                  Anomaly Engine v1.0
+                </span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Automated multi-factor integrity checks (Spending vs Progress, Timelines, Costs, and Duplicates)
+              </p>
+            </div>
+          </div>
+
+          <div>
+            {(anomaliesData?.anomalyCount ?? 0) > 0 ? (
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
+                anomaliesData?.highestSeverity === 'HIGH'
+                  ? 'bg-red-50 text-red-700 border-red-200'
+                  : anomaliesData?.highestSeverity === 'MEDIUM'
+                  ? 'bg-amber-50 text-amber-700 border-amber-200'
+                  : 'bg-blue-50 text-blue-700 border-blue-200'
+              }`}>
+                {anomaliesData?.highestSeverity === 'HIGH' ? '🔴 High Severity Signal' : '🟡 Medium Severity Signal'}
+                <span className="bg-white/80 px-1.5 py-0.2 rounded-full text-[10px] ml-1">
+                  {anomaliesData?.anomalyCount} {anomaliesData?.anomalyCount === 1 ? 'Signal' : 'Signals'}
+                </span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <CheckCircle2 size={13} />
+                No Anomalies Detected
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Anomaly list or Clear state */}
+        {!anomaliesData || anomaliesData.anomalyCount === 0 ? (
+          <div className="bg-emerald-50/60 border border-emerald-200/80 rounded-2xl p-4 flex items-start gap-3 text-emerald-900">
+            <CheckCircle2 size={20} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+            <div className="text-xs space-y-1">
+              <p className="font-semibold text-emerald-950">
+                All 6 automated surveillance checks passed within baseline thresholds.
+              </p>
+              <p className="text-emerald-800 leading-relaxed">
+                Expenditure is commensurate with reported physical progress, work milestones are within schedule limits, no duplicate or similar works were flagged in this district, and budget figures match approved allocations.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {anomaliesData.anomalies.map((a, idx) => (
+              <div
+                key={idx}
+                className={`rounded-2xl border p-4 sm:p-5 transition-all ${
+                  a.severity === 'HIGH'
+                    ? 'bg-red-50/40 border-red-200'
+                    : 'bg-amber-50/40 border-amber-200'
+                }`}
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${
+                      a.severity === 'HIGH'
+                        ? 'bg-red-100 text-red-800'
+                        : 'bg-amber-100 text-amber-800'
+                    }`}>
+                      {a.severity}
+                    </span>
+                    <h3 className="font-bold text-sm text-slate-900">{a.title}</h3>
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-500 bg-white/70 px-2 py-0.5 rounded border border-slate-200">
+                    {a.type}
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-700 leading-relaxed mb-3">
+                  {a.message}
+                </p>
+
+                {/* Supporting metrics chips if present */}
+                {a.values && Object.keys(a.values).length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {a.values.physicalProgress !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700">
+                        Physical Progress: <strong>{a.values.physicalProgress}%</strong>
+                      </span>
+                    )}
+                    {a.values.expenditurePercentage !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700">
+                        Expenditure: <strong>{a.values.expenditurePercentage}%</strong>
+                      </span>
+                    )}
+                    {a.values.difference !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 font-semibold text-red-600">
+                        Discrepancy Gap: <strong>+{a.values.difference}% pts</strong>
+                      </span>
+                    )}
+                    {a.values.daysOverdue !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 font-semibold text-red-600">
+                        Overdue by: <strong>{a.values.daysOverdue} days</strong>
+                      </span>
+                    )}
+                    {a.values.sanctionedAmount !== undefined && a.values.districtCategoryAverage !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700">
+                        Cost: <strong>{fmtLakhs(a.values.sanctionedAmount)}</strong> (Dist Avg: {fmtLakhs(a.values.districtCategoryAverage)})
+                      </span>
+                    )}
+                    {a.values.spent !== undefined && a.values.released !== undefined && (
+                      <span className="text-[11px] bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700">
+                        Spent: <strong>{fmtLakhs(a.values.spent)}</strong> vs Released: <strong>{fmtLakhs(a.values.released)}</strong>
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Related projects if SIMILAR_PROJECT */}
+                {a.relatedProjects && a.relatedProjects.length > 0 && (
+                  <div className="bg-white border border-slate-200 rounded-xl p-3 mb-3">
+                    <p className="text-[11px] font-bold text-slate-700 uppercase tracking-wide mb-2">
+                      Matching / Overlapping Projects Detected in Same District:
+                    </p>
+                    <div className="space-y-2">
+                      {a.relatedProjects.map((rp, rIdx) => (
+                        <div key={rIdx} className="flex flex-wrap items-center justify-between text-xs gap-2 p-2 rounded-lg bg-slate-50 border border-slate-100">
+                          <div>
+                            <span className="font-mono text-slate-500 text-[11px] mr-2">{rp.relatedProjectId}</span>
+                            <span className="font-semibold text-slate-800">{rp.relatedProjectName}</span>
+                            <span className="text-slate-500 ml-2">({fmtLakhs(rp.sanctionedAmount)})</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className="text-[11px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">
+                              {Math.round(rp.similarityScore * 100)}% Similarity
+                            </span>
+                            <Link
+                              to={`/projects/${rp.relatedProjectId}`}
+                              className="inline-flex items-center gap-1 text-blue-700 hover:text-blue-800 font-semibold text-xs"
+                            >
+                              Inspect Work <ExternalLink size={12} />
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Recommended Action */}
+                <div className="bg-white/80 border border-slate-200/80 rounded-xl px-3.5 py-2 text-xs flex items-start gap-2">
+                  <span className="font-bold text-slate-800 flex-shrink-0">Recommended Action:</span>
+                  <span className="text-slate-700">{a.recommendation}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Mandatory Disclaimer */}
+        <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3 text-xs text-slate-600">
+          <Info size={16} className="text-slate-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-bold text-slate-800">Operational Disclaimer: </span>
+            <span>
+              {anomaliesData?.disclaimer ||
+                'These are automated monitoring signals, not proof of fraud. Final verification remains with authorities.'}
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">

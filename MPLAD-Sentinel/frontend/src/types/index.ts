@@ -268,3 +268,86 @@ export interface AdminProjectsResponse {
     progressSpendingStatuses: string[];
   };
 }
+
+// ─── Phase 5: AI-Powered Anomaly Detection Engine ─────────────────────────────
+
+export type AnomalySeverity = 'HIGH' | 'MEDIUM' | 'LOW' | 'NONE';
+
+export type AnomalyType =
+  | 'PROGRESS_SPENDING_MISMATCH'
+  | 'EXPENDITURE_RELEASE_INCONSISTENCY'
+  | 'TIMELINE_DELAY'
+  | 'UNUSUAL_PROJECT_COST'
+  | 'DATA_QUALITY'
+  | 'SIMILAR_PROJECT';
+
+export interface RelatedSimilarProject {
+  relatedProjectId: string;
+  relatedProjectName: string;
+  district: string;
+  category: string;
+  sanctionedAmount: number;
+  similarityScore: number;
+}
+
+export interface AnomalyRecord {
+  type: AnomalyType;
+  severity: AnomalySeverity;
+  title: string;
+  message: string;
+  recommendation: string;
+  values?: {
+    physicalProgress?: number;
+    expenditurePercentage?: number;
+    difference?: number;
+    spent?: number;
+    released?: number;
+    sanctioned?: number;
+    daysOverdue?: number;
+    expectedCompletionDate?: string;
+    actualCompletionDate?: string;
+    sanctionedAmount?: number;
+    districtCategoryAverage?: number;
+    ratio?: number;
+    variance?: number;
+    issue?: string;
+  };
+  relatedProjects?: RelatedSimilarProject[];
+}
+
+export interface ProjectAnomaliesData {
+  projectId: string;
+  projectName: string;
+  district: string;
+  state: string;
+  category: string;
+  status: string;
+  sanctionedAmount: number;
+  expenditurePercentage: number;
+  physicalProgress: number;
+  anomalyCount: number;
+  highestSeverity: AnomalySeverity;
+  anomalies: AnomalyRecord[];
+  analyzedAt: string;
+  disclaimer: string;
+}
+
+export interface ProjectAnomaliesResponse {
+  success: boolean;
+  data: ProjectAnomaliesData;
+}
+
+export interface AdminAnomaliesSummary {
+  totalAnalyzed: number;
+  projectsWithAnomalies: number;
+  highSeveritySignals: number;
+  mediumSeveritySignals: number;
+  lowSeveritySignals: number;
+  projects: ProjectAnomaliesData[];
+  analyzedAt: string;
+}
+
+export interface AdminAnomaliesResponse {
+  success: boolean;
+  data: AdminAnomaliesSummary;
+}

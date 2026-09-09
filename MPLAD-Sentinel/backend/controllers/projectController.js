@@ -5,6 +5,8 @@ import {
   calculateProgressSpending,
   calculateTimelineStatus,
 } from '../services/projectIntelligenceService.js';
+import { detectAnomalies } from '../services/anomalyDetectionService.js';
+import { calculateRiskScore } from '../services/riskScoringService.js';
 
 // GET /api/projects
 export const getAllProjects = async (req, res) => {
@@ -26,30 +28,41 @@ export const getAllProjects = async (req, res) => {
     if (constituency) query.constituency = { $regex: `^${constituency}$`, $options: 'i' };
     if (category)     query.category     = { $regex: `^${category}$`,     $options: 'i' };
     if (status)       query.status       = { $regex: `^${status}$`,       $options: 'i' };
-    if (riskLevel)    query.riskLevel    = { $regex: `^${riskLevel}$`,    $options: 'i' };
 
     const skip  = (parseInt(page) - 1) * parseInt(limit);
     const total = await Project.countDocuments(query);
     const rawProjects = await Project.find(query).sort({ createdAt: -1 }).skip(skip).limit(parseInt(limit)).lean();
 
-    // Augment with Phase 3 lightweight intelligence summary for project cards
-    const projects = rawProjects.map((p) => {
-      const financial = calculateFinancialMetrics(p);
-      const progress  = calculateProgressSpending(p, financial);
-      const timeline  = calculateTimelineStatus(p);
+    // Augment with Phase 3 intelligence + Phase 6 explainable dynamic risk scores
+    const projects = await Promise.all(
+      rawProjects.map(async (p) => {
+        const financial = calculateFinancialMetrics(p);
+        const progress  = calculateProgressSpending(p, financial);
+        const timeline  = calculateTimelineStatus(p);
+        const risk      = await calculateRiskScore(p);
 
-      return {
-        ...p,
-        expenditurePercentage: financial.expenditurePercentage,
-        releasePercentage: financial.releasePercentage,
-        remainingAmount: financial.remainingAmount,
-        progressSpendingDifference: progress.progressSpendingDifference,
-        progressSpendingStatus: progress.progressSpendingStatus,
-        timelineStatus: timeline.timelineStatus,
-        timelineLabel: timeline.label,
-        daysOverdue: timeline.daysOverdue,
-      };
-    });
+        return {
+          ...p,
+          expenditurePercentage: financial.expenditurePercentage,
+          releasePercentage: financial.releasePercentage,
+          remainingAmount: financial.remainingAmount,
+          progressSpendingDifference: progress.progressSpendingDifference,
+          progressSpendingStatus: progress.progressSpendingStatus,
+          timelineStatus: timeline.timelineStatus,
+          timelineLabel: timeline.label,
+          daysOverdue: timeline.daysOverdue,
+          riskScore: risk.riskScore,
+          riskLevel: risk.riskLevel,
+          riskReasons: risk.reasons,
+          recommendedAction: risk.recommendedAction,
+        };
+      })
+    );
+
+    // If filtered by riskLevel in query
+    const filteredProjects = riskLevel
+      ? projects.filter((p) => p.riskLevel.toLowerCase() === riskLevel.toLowerCase())
+      : projects;
 
     const [states, districts, constituencies, categories] = await Promise.all([
       Project.distinct('state'),
@@ -60,11 +73,16 @@ export const getAllProjects = async (req, res) => {
 
     res.json({
       success: true,
-      total,
+      total: riskLevel ? filteredProjects.length : total,
       page: parseInt(page),
       limit: parseInt(limit),
-      data: projects,
-      filters: { states, districts, constituencies, categories },
+      data: filteredProjects,
+      filters: {
+        states,
+        districts,
+        constituencies,
+        categories,
+      },
     });
   } catch (err) {
     console.error('[getAllProjects]', err);
@@ -76,17 +94,26 @@ export const getAllProjects = async (req, res) => {
 export const getProjectById = async (req, res) => {
   try {
     const project = await Project.findOne({
-      $or: [{ projectId: req.params.projectId }, { _id: req.params.projectId.match(/^[0-9a-fA-F]{24}$/) ? req.params.projectId : null }],
+      $or: [
+        { projectId: req.params.projectId },
+        { _id: req.params.projectId.match(/^[0-9a-fA-F]{24}$/) ? req.params.projectId : null },
+      ],
     }).lean();
 
     if (!project) return res.status(404).json({ success: false, error: 'Project not found' });
 
-    const intelligence = await getProjectIntelligenceData(project);
+    const [intelligence, risk] = await Promise.all([
+      getProjectIntelligenceData(project),
+      calculateRiskScore(project),
+    ]);
 
     res.json({
       success: true,
       data: {
         ...project,
+        riskScore: risk.riskScore,
+        riskLevel: risk.riskLevel,
+        risk,
         intelligence,
       },
     });
@@ -115,5 +142,55 @@ export const getProjectIntelligence = async (req, res) => {
   } catch (err) {
     console.error('[getProjectIntelligence]', err);
     res.status(500).json({ success: false, error: 'Failed to compute project intelligence' });
+  }
+};
+
+// GET /api/projects/:projectId/anomalies
+export const getProjectAnomalies = async (req, res) => {
+  try {
+    const project = await Project.findOne({
+      $or: [
+        { projectId: req.params.projectId },
+        { _id: req.params.projectId.match(/^[0-9a-fA-F]{24}$/) ? req.params.projectId : null },
+      ],
+    }).lean();
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        error: `Project '${req.params.projectId}' not found`,
+      });
+    }
+
+    const anomalyReport = await detectAnomalies(project);
+    res.json({ success: true, data: anomalyReport });
+  } catch (err) {
+    console.error('[getProjectAnomalies]', err);
+    res.status(500).json({ success: false, error: 'Failed to detect project anomalies' });
+  }
+};
+
+// GET /api/projects/:projectId/risk
+export const getProjectRisk = async (req, res) => {
+  try {
+    const project = await Project.findOne({
+      $or: [
+        { projectId: req.params.projectId },
+        { _id: req.params.projectId.match(/^[0-9a-fA-F]{24}$/) ? req.params.projectId : null },
+      ],
+    }).lean();
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        error: `Project '${req.params.projectId}' not found`,
+      });
+    }
+
+    const riskData = await calculateRiskScore(project);
+    res.json({ success: true, data: riskData });
+  } catch (err) {
+    console.error('[getProjectRisk]', err);
+    res.status(500).json({ success: false, error: 'Failed to calculate project risk score' });
   }
 };

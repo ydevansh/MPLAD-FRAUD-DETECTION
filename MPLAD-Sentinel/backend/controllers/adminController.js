@@ -4,6 +4,8 @@ import {
   getProjectsNeedingAttention,
   getMonitoredProjects,
 } from '../services/projectMonitoringService.js';
+import { analyzeAllProjects } from '../services/anomalyDetectionService.js';
+import { calculatePortfolioRisk } from '../services/riskScoringService.js';
 
 // GET /api/admin/summary
 export const getSummary = async (req, res) => {
@@ -96,6 +98,40 @@ export const getProjects = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to retrieve monitored projects',
+    });
+  }
+};
+
+// GET /api/admin/anomalies
+export const getAnomalies = async (req, res) => {
+  try {
+    const analysis = await analyzeAllProjects();
+    res.json({
+      success: true,
+      data: analysis,
+    });
+  } catch (err) {
+    console.error('[admin:getAnomalies]', err);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to run portfolio anomaly detection analysis',
+    });
+  }
+};
+
+// GET /api/admin/risk
+export const getPortfolioRisk = async (req, res) => {
+  try {
+    const riskData = await calculatePortfolioRisk();
+    res.json({
+      success: true,
+      data: riskData,
+    });
+  } catch (err) {
+    console.error('[admin:getPortfolioRisk]', err);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to calculate portfolio risk analysis',
     });
   }
 };

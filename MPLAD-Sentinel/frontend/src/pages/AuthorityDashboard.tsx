@@ -21,6 +21,7 @@ import {
   AlertCircle,
   ArrowUpRight,
   IndianRupee,
+  Info,
 } from 'lucide-react';
 import {
   BarChart,
@@ -39,12 +40,14 @@ import {
   getAdminSummary,
   getAdminAttention,
   getAdminProjects,
+  getAdminAnomalies,
 } from '../services/api';
 import type {
   AdminSummaryData,
   AttentionProject,
   Project,
   AdminProjectsFilters,
+  AdminAnomaliesSummary,
 } from '../types';
 
 function fmtCurrency(lakhs: number | undefined | null): string {
@@ -57,6 +60,8 @@ export default function AuthorityDashboard() {
   const [summary, setSummary]       = useState<AdminSummaryData | null>(null);
   const [attention, setAttention]   = useState<AttentionProject[]>([]);
   const [projects, setProjects]     = useState<any[]>([]);
+  const [anomaliesSummary, setAnomaliesSummary] = useState<AdminAnomaliesSummary | null>(null);
+  const [anomalySeverityFilter, setAnomalySeverityFilter] = useState<'ALL' | 'HIGH' | 'MEDIUM'>('ALL');
   const [filtersData, setFiltersData] = useState<{
     states: string[];
     districts: string[];
@@ -81,15 +86,17 @@ export default function AuthorityDashboard() {
       setLoading(true);
       setError(null);
 
-      const [sumRes, attRes, projRes] = await Promise.all([
+      const [sumRes, attRes, projRes, anomRes] = await Promise.all([
         getAdminSummary(),
         getAdminAttention(),
         getAdminProjects(),
+        getAdminAnomalies().catch(() => null),
       ]);
 
       if (sumRes.data) setSummary(sumRes.data);
       if (attRes.data) setAttention(attRes.data);
       if (projRes.data) setProjects(projRes.data);
+      if (anomRes && anomRes.data) setAnomaliesSummary(anomRes.data);
       if (projRes.filters) {
         setFiltersData({
           states: projRes.filters.states || [],
@@ -358,7 +365,200 @@ export default function AuthorityDashboard() {
         )}
       </div>
 
-      {/* ── 4. VISUAL CHARTS (3 Recharts) ─────────────────────────────────────── */}
+      {/* ── 4. AI-POWERED ANOMALY DETECTION ENGINE (Phase 5) ──────────────────── */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                <ShieldAlert size={20} />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-slate-900">
+                    AI-Assisted Anomaly Detection Engine
+                  </h2>
+                  <span className="text-[11px] bg-red-50 text-red-700 border border-red-200 font-bold px-2 py-0.5 rounded-full">
+                    Surveillance Active
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                  Algorithmic integrity checks identifying spending mismatches, timeline delays, cost outliers, data inconsistencies, and duplicate works.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Severity Filter Pills */}
+          <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+            <button
+              onClick={() => setAnomalySeverityFilter('ALL')}
+              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
+                anomalySeverityFilter === 'ALL'
+                  ? 'bg-white text-slate-900 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              All Flagged ({anomaliesSummary?.projectsWithAnomalies ?? 0})
+            </button>
+            <button
+              onClick={() => setAnomalySeverityFilter('HIGH')}
+              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
+                anomalySeverityFilter === 'HIGH'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-red-700'
+              }`}
+            >
+              🔴 High ({anomaliesSummary?.highSeveritySignals ?? 0})
+            </button>
+            <button
+              onClick={() => setAnomalySeverityFilter('MEDIUM')}
+              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors ${
+                anomalySeverityFilter === 'MEDIUM'
+                  ? 'bg-amber-500 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-amber-700'
+              }`}
+            >
+              🟡 Medium ({anomaliesSummary?.mediumSeveritySignals ?? 0})
+            </button>
+          </div>
+        </div>
+
+        {/* 4 Mini-KPIs for Anomaly Surveillance */}
+        {anomaliesSummary && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+              <span className="text-xs text-slate-500 font-medium block mb-1">Portfolio Scanned</span>
+              <span className="text-xl font-bold text-slate-900">{anomaliesSummary.totalAnalyzed}</span>
+              <span className="text-[10px] text-slate-400 block mt-0.5">Total works checked</span>
+            </div>
+
+            <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-4">
+              <span className="text-xs text-amber-800 font-medium block mb-1">Projects Flagged</span>
+              <span className="text-xl font-bold text-amber-900">{anomaliesSummary.projectsWithAnomalies}</span>
+              <span className="text-[10px] text-amber-700 block mt-0.5">One or more signals</span>
+            </div>
+
+            <div className="bg-red-50/60 border border-red-200 rounded-2xl p-4">
+              <span className="text-xs text-red-800 font-medium block mb-1">High Severity Signals</span>
+              <span className="text-xl font-bold text-red-700">{anomaliesSummary.highSeveritySignals}</span>
+              <span className="text-[10px] text-red-600 block mt-0.5">Immediate inspection</span>
+            </div>
+
+            <div className="bg-amber-50/30 border border-amber-200 rounded-2xl p-4">
+              <span className="text-xs text-amber-700 font-medium block mb-1">Medium Severity Signals</span>
+              <span className="text-xl font-bold text-amber-800">{anomaliesSummary.mediumSeveritySignals}</span>
+              <span className="text-[10px] text-amber-600 block mt-0.5">Desk review advised</span>
+            </div>
+          </div>
+        )}
+
+        {/* Anomaly Projects Surveillance Table */}
+        {!anomaliesSummary || anomaliesSummary.projects.length === 0 ? (
+          <div className="text-center py-8 text-slate-500">
+            <CheckCircle2 size={32} className="text-green-500 mx-auto mb-2" />
+            <p className="font-semibold text-sm">No anomaly monitoring signals currently flagged in the portfolio.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto rounded-2xl border border-slate-200">
+            <table className="w-full text-left text-sm text-slate-600">
+              <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                <tr>
+                  <th className="py-3 px-4">Project & Location</th>
+                  <th className="py-3 px-4">Category & Status</th>
+                  <th className="py-3 px-4 text-center">Progress vs Spent</th>
+                  <th className="py-3 px-4 text-center">Severity</th>
+                  <th className="py-3 px-4">Flagged Anomalies</th>
+                  <th className="py-3 px-4 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 bg-white">
+                {anomaliesSummary.projects
+                  .filter((p) => {
+                    if (anomalySeverityFilter === 'ALL') return true;
+                    return p.highestSeverity === anomalySeverityFilter;
+                  })
+                  .map((p) => (
+                    <tr key={p.projectId} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3.5 px-4">
+                        <div className="font-mono text-xs font-bold text-slate-600 mb-0.5">{p.projectId}</div>
+                        <div className="font-semibold text-slate-900 text-sm line-clamp-1 max-w-xs">{p.projectName}</div>
+                        <div className="text-xs text-slate-400 mt-0.5">{p.district}, {p.state}</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-xs">
+                        <div className="font-medium text-slate-800">{p.category}</div>
+                        <div className="text-slate-400 mt-0.5">{p.status}</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-center">
+                        <div className="inline-block text-xs">
+                          <span className="font-bold text-blue-700">{p.physicalProgress}%</span>
+                          <span className="text-slate-400 mx-1">/</span>
+                          <span className="font-bold text-amber-700">{p.expenditurePercentage}%</span>
+                        </div>
+                        <div className="text-[10px] text-slate-400">Prog / Spend</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-center">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold border ${
+                          p.highestSeverity === 'HIGH'
+                            ? 'bg-red-50 text-red-700 border-red-200'
+                            : p.highestSeverity === 'MEDIUM'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200'
+                            : 'bg-blue-50 text-blue-700 border-blue-200'
+                        }`}>
+                          {p.highestSeverity}
+                        </span>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <div className="space-y-1 max-w-sm">
+                          {p.anomalies.slice(0, 2).map((a, aIdx) => (
+                            <div key={aIdx} className="text-xs flex items-center gap-1.5">
+                              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                                a.severity === 'HIGH' ? 'bg-red-500' : 'bg-amber-500'
+                              }`} />
+                              <span className="font-medium text-slate-800 line-clamp-1">{a.title}</span>
+                            </div>
+                          ))}
+                          {p.anomalies.length > 2 && (
+                            <span className="text-[10px] text-slate-400 font-medium">
+                              +{p.anomalies.length - 2} more signal(s)
+                            </span>
+                          )}
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-right">
+                        <Link
+                          to={`/projects/${p.projectId}`}
+                          className="inline-flex items-center gap-1 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                          Audit <ExternalLink size={12} />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Mandatory Disclaimer */}
+        <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3 text-xs text-slate-600">
+          <Info size={16} className="text-slate-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <span className="font-bold text-slate-800">Operational Disclaimer: </span>
+            <span>
+              {anomaliesSummary?.projects[0]?.disclaimer ||
+                'These are automated monitoring signals, not proof of fraud. Final verification remains with authorities.'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 5. VISUAL CHARTS (3 Recharts) ─────────────────────────────────────── */}
       {summary && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Chart 1: Project Status Breakdown */}
