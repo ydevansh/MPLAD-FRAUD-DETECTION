@@ -1,0 +1,1932 @@
+[
+  {
+    "id": "ANAL-0001",
+    "project_id": "PROJ-0061",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0061 (Village Electrification at Varanasi Ward 24) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0002",
+    "project_id": "PROJ-0062",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0062 (Cremation Ground at Allahabad Ward 21) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0003",
+    "project_id": "PROJ-0063",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0063 (Solar Street Lights at Jabalpur Ward 34) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0004",
+    "project_id": "PROJ-0064",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0064 (Solar Street Lights at Indore Ward 24) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0005",
+    "project_id": "PROJ-0065",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0065 (Anganwadi Centre at Gaya Ward 18) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0006",
+    "project_id": "PROJ-0066",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0066 (Water Supply Scheme at Jodhpur Ward 32) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0007",
+    "project_id": "PROJ-0067",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0067 (Drain Construction at Mumbai North Ward 1) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0008",
+    "project_id": "PROJ-0068",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0068 (Pond Renovation / Deepening at Mumbai North Ward 8) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0009",
+    "project_id": "PROJ-0069",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0069 (Drain Construction at Pune Ward 37) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0010",
+    "project_id": "PROJ-0070",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0070 (Drain Construction at Agra Ward 29) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0011",
+    "project_id": "PROJ-0071",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0071 (Bus Shelter at Jabalpur Ward 11) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0012",
+    "project_id": "PROJ-0072",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0072 (Drain Construction at Udaipur Ward 38) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0013",
+    "project_id": "PROJ-0073",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0073 (Drain Construction at Jaipur Ward 9) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0014",
+    "project_id": "PROJ-0074",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0074 (Sports Facility at Lucknow Ward 31) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0015",
+    "project_id": "PROJ-0075",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0075 (Anganwadi Centre at Jaipur Ward 25) has identified 1 risk indicator(s). The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0016",
+    "project_id": "PROJ-0076",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0076 (Health Sub-Centre at Jodhpur Ward 20) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0017",
+    "project_id": "PROJ-0077",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0077 (Anganwadi Centre at Gaya Ward 20) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0018",
+    "project_id": "PROJ-0078",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0078 (Road Construction at Patna Sahib Ward 20) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0019",
+    "project_id": "PROJ-0079",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0079 (Health Sub-Centre at Mumbai North Ward 33) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0020",
+    "project_id": "PROJ-0080",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0080 (Drain Construction at Bikaner Ward 26) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0021",
+    "project_id": "PROJ-0081",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0081 (Solar Street Lights at Lucknow Ward 22) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0022",
+    "project_id": "PROJ-0082",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0082 (Village Electrification at Gaya Ward 10) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0023",
+    "project_id": "PROJ-0083",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0083 (Bus Shelter at Agra Ward 14) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0024",
+    "project_id": "PROJ-0084",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0084 (Water Supply Scheme at Agra Ward 30) has identified 1 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0025",
+    "project_id": "PROJ-0085",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0085 (Pond Renovation / Deepening at Varanasi Ward 13) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0026",
+    "project_id": "PROJ-0086",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0086 (Drain Construction at Allahabad Ward 29) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0027",
+    "project_id": "PROJ-0087",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0087 (Road Construction at Muzaffarpur Ward 19) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0028",
+    "project_id": "PROJ-0088",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0088 (Sports Facility at Agra Ward 25) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0029",
+    "project_id": "PROJ-0089",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0089 (Anganwadi Centre at Jabalpur Ward 3) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0030",
+    "project_id": "PROJ-0090",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0090 (Toilet Block Construction at Patna Sahib Ward 9) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0031",
+    "project_id": "PROJ-0091",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0091 (Road Construction at Jaipur Ward 40) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0032",
+    "project_id": "PROJ-0092",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0092 (Anganwadi Centre at Gaya Ward 32) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0033",
+    "project_id": "PROJ-0093",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0093 (Village Electrification at Mumbai North Ward 23) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0034",
+    "project_id": "PROJ-0094",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0094 (Health Sub-Centre at Varanasi Ward 1) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0035",
+    "project_id": "PROJ-0095",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "EXPENDITURE_PROGRESS_MISMATCH",
+      "PAYMENT_SPIKE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      },
+      {
+        "flag": "PAYMENT_SPIKE",
+        "explanation": "A single large payment representing over 80% of total sanctions was released before physical verification."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0095 (Village Electrification at Bhagalpur Ward 7) has identified 2 risk indicator(s). Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. A single large payment representing over 80% of total sanctions was released before physical verification. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0036",
+    "project_id": "PROJ-0096",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0096 (Pond Renovation / Deepening at Bikaner Ward 3) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0037",
+    "project_id": "PROJ-0097",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0097 (Solar Street Lights at Gaya Ward 25) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0038",
+    "project_id": "PROJ-0098",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0098 (Sports Facility at Lucknow Ward 16) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0039",
+    "project_id": "PROJ-0099",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0099 (Cremation Ground at Jaipur Ward 15) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0040",
+    "project_id": "PROJ-0100",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0100 (Cremation Ground at Udaipur Ward 27) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0041",
+    "project_id": "PROJ-0101",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0101 (Road Construction at Jabalpur Ward 8) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0042",
+    "project_id": "PROJ-0102",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0102 (Village Electrification at Udaipur Ward 38) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0043",
+    "project_id": "PROJ-0103",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0103 (Bridge Construction at Indore Ward 4) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0044",
+    "project_id": "PROJ-0104",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0104 (Community Hall at Bikaner Ward 26) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0045",
+    "project_id": "PROJ-0105",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0105 (Bus Shelter at Pune Ward 9) has identified 1 risk indicator(s). Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0046",
+    "project_id": "PROJ-0106",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0106 (Road Construction at Lucknow Ward 21) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0047",
+    "project_id": "PROJ-0107",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0107 (Road Construction at Lucknow Ward 22 (Phase II)) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0048",
+    "project_id": "PROJ-0108",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0108 (Solar Street Lights at Bhopal Ward 14) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0049",
+    "project_id": "PROJ-0109",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0109 (Solar Street Lights at Bhopal Ward 3 (Phase II)) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0050",
+    "project_id": "PROJ-0110",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0110 (Health Sub-Centre at Lucknow Ward 40) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0051",
+    "project_id": "PROJ-0111",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0111 (Health Sub-Centre at Lucknow Ward 37 (Phase II)) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0052",
+    "project_id": "PROJ-0112",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0112 (Pond Renovation / Deepening at Varanasi Ward 18) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0053",
+    "project_id": "PROJ-0113",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0113 (Pond Renovation / Deepening at Varanasi Ward 7 (Phase II)) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0054",
+    "project_id": "PROJ-0114",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0114 (Community Hall at Gwalior Ward 32) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0055",
+    "project_id": "PROJ-0115",
+    "risk_score": 20,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "DUPLICATE_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "DUPLICATE_PROJECT",
+        "explanation": "A near-identical project with the same work type and contractor exists within 200 metres of this location."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0115 (Community Hall at Gwalior Ward 31 (Phase II)) has identified 1 risk indicator(s). A near-identical project with the same work type and contractor exists within 200 metres of this location. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0056",
+    "project_id": "PROJ-0116",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0116 (Road Construction at Bikaner Ward 10) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0057",
+    "project_id": "PROJ-0117",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0117 (Primary School Renovation at Patna Sahib Ward 32) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0058",
+    "project_id": "PROJ-0118",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0118 (Road Construction at Nagpur Ward 28) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0059",
+    "project_id": "PROJ-0119",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0119 (Pond Renovation / Deepening at Bhagalpur Ward 25) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0060",
+    "project_id": "PROJ-0120",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0120 (Sports Facility at Lucknow Ward 15) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0061",
+    "project_id": "PROJ-0121",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0121 (Water Supply Scheme at Bhopal Ward 2) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0062",
+    "project_id": "PROJ-0122",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0122 (Anganwadi Centre at Jabalpur Ward 24) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0063",
+    "project_id": "PROJ-0123",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0123 (Sports Facility at Gaya Ward 39) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0064",
+    "project_id": "PROJ-0124",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0124 (Cremation Ground at Indore Ward 7) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0065",
+    "project_id": "PROJ-0125",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0125 (Health Sub-Centre at Allahabad Ward 25) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0066",
+    "project_id": "PROJ-0126",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0126 (Pond Renovation / Deepening at Patna Sahib Ward 25) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0067",
+    "project_id": "PROJ-0127",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0127 (Village Electrification at Jabalpur Ward 35) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0068",
+    "project_id": "PROJ-0128",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0128 (Community Hall at Bikaner Ward 6) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0069",
+    "project_id": "PROJ-0129",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0129 (Toilet Block Construction at Allahabad Ward 17) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0070",
+    "project_id": "PROJ-0130",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "STALLED_PROJECT"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "STALLED_PROJECT",
+        "explanation": "This project has shown no progress update for over 18 months and remains incomplete past its deadline."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0130 (Village Electrification at Muzaffarpur Ward 26) has identified 1 risk indicator(s). This project has shown no progress update for over 18 months and remains incomplete past its deadline. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0071",
+    "project_id": "PROJ-0131",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING",
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      },
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0131 (Cremation Ground at Varanasi Ward 20) has identified 2 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0072",
+    "project_id": "PROJ-0132",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING",
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      },
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0132 (Pond Renovation / Deepening at Agra Ward 4) has identified 2 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0073",
+    "project_id": "PROJ-0133",
+    "risk_score": 35,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING",
+      "COST_OUTLIER"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      },
+      {
+        "flag": "COST_OUTLIER",
+        "explanation": "The sanctioned amount for this project is significantly higher than the state average for similar works."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0133 (Bus Shelter at Varanasi Ward 3) has identified 2 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. The sanctioned amount for this project is significantly higher than the state average for similar works. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0074",
+    "project_id": "PROJ-0134",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0134 (Pond Renovation / Deepening at Allahabad Ward 20) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0075",
+    "project_id": "PROJ-0135",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0135 (Water Supply Scheme at Lucknow Ward 19) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0076",
+    "project_id": "PROJ-0136",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0136 (Sports Facility at Lucknow Ward 34) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0077",
+    "project_id": "PROJ-0137",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0137 (Sports Facility at Varanasi Ward 17) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0078",
+    "project_id": "PROJ-0138",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0138 (Sports Facility at Lucknow Ward 3) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0079",
+    "project_id": "PROJ-0139",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0139 (Drain Construction at Allahabad Ward 22) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0080",
+    "project_id": "PROJ-0140",
+    "risk_score": 15,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "SUSPICIOUS_CLUSTERING"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "SUSPICIOUS_CLUSTERING",
+        "explanation": "The same contractor has been awarded 8+ projects in this constituency within the same fiscal year."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0140 (Anganwadi Centre at Lucknow Ward 40) has identified 1 risk indicator(s). The same contractor has been awarded 8+ projects in this constituency within the same fiscal year. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0081",
+    "project_id": "PROJ-0141",
+    "risk_score": 65,
+    "risk_level": "high",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "PHOTO_REUSE",
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      },
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0141 (Cremation Ground at Bikaner Ward 25) has identified 3 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Official progress photographs appear identical to those uploaded for other unrelated projects. Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires field verification recommended — district authority should conduct physical verification within 30 days.",
+    "recommendation": "Field Verification Recommended — District authority should conduct physical verification within 30 days.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0082",
+    "project_id": "PROJ-0142",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0142 (Drain Construction at Muzaffarpur Ward 23) has identified 1 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0083",
+    "project_id": "PROJ-0143",
+    "risk_score": 40,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0143 (Pond Renovation / Deepening at Gwalior Ward 9) has identified 2 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0084",
+    "project_id": "PROJ-0144",
+    "risk_score": 50,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0144 (Health Sub-Centre at Muzaffarpur Ward 19) has identified 2 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0085",
+    "project_id": "PROJ-0145",
+    "risk_score": 40,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0145 (Primary School Renovation at Allahabad Ward 38) has identified 2 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0086",
+    "project_id": "PROJ-0146",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0146 (Solar Street Lights at Bhagalpur Ward 12) has identified 1 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0087",
+    "project_id": "PROJ-0147",
+    "risk_score": 65,
+    "risk_level": "high",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "PHOTO_REUSE",
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      },
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0147 (Water Supply Scheme at Gaya Ward 36) has identified 3 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Official progress photographs appear identical to those uploaded for other unrelated projects. Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires field verification recommended — district authority should conduct physical verification within 30 days.",
+    "recommendation": "Field Verification Recommended — District authority should conduct physical verification within 30 days.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0088",
+    "project_id": "PROJ-0148",
+    "risk_score": 25,
+    "risk_level": "low",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0148 (Primary School Renovation at Jaipur Ward 35) has identified 1 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Based on these indicators, this project requires routine monitoring — no immediate action required.",
+    "recommendation": "Routine Monitoring — No immediate action required.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0089",
+    "project_id": "PROJ-0149",
+    "risk_score": 40,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "PHOTO_REUSE"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "PHOTO_REUSE",
+        "explanation": "Official progress photographs appear identical to those uploaded for other unrelated projects."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0149 (Pond Renovation / Deepening at Nashik Ward 21) has identified 2 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Official progress photographs appear identical to those uploaded for other unrelated projects. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  },
+  {
+    "id": "ANAL-0090",
+    "project_id": "PROJ-0150",
+    "risk_score": 50,
+    "risk_level": "medium",
+    "anomaly_flags": [
+      "CITIZEN_DISCREPANCY",
+      "EXPENDITURE_PROGRESS_MISMATCH"
+    ],
+    "contributing_factors": [
+      {
+        "flag": "CITIZEN_DISCREPANCY",
+        "explanation": "Multiple independent citizen reports with GPS evidence contradict the official completion status."
+      },
+      {
+        "flag": "EXPENDITURE_PROGRESS_MISMATCH",
+        "explanation": "Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy."
+      }
+    ],
+    "narrative_text": "AI analysis of project PROJ-0150 (Anganwadi Centre at Allahabad Ward 40) has identified 2 risk indicator(s). Multiple independent citizen reports with GPS evidence contradict the official completion status. Over 80% of funds have been released but physical progress remains below 40%, indicating a serious discrepancy. Based on these indicators, this project requires enhanced monitoring — include in next quarterly review. request updated progress photographs.",
+    "recommendation": "Enhanced Monitoring — Include in next quarterly review. Request updated progress photographs.",
+    "model_version": "sentinel-rules-v1.0",
+    "triggered_by": "system",
+    "created_at": "2026-09-09"
+  }
+]
