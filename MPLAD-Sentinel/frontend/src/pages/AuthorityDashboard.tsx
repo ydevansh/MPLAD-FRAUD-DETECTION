@@ -278,6 +278,56 @@ export default function AuthorityDashboard() {
         </div>
       )}
 
+      {/* ── 2B. PROJECT LOCATION COVERAGE (Phase 7 Geospatial) ────────────────── */}
+      {summary?.locationCoverage && (
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0">
+              <MapPin size={20} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-slate-900 text-sm">Project Location Coverage</h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                  Geospatial Readiness
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Official GPS coordinate completeness for field audits and citizen proximity verification.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span className="text-slate-600">
+                <strong className="text-slate-900 text-sm font-bold">{summary.locationCoverage.mappedProjects}</strong> projects mapped
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className={`w-2.5 h-2.5 rounded-full ${summary.locationCoverage.missingCoordinatesProjects > 0 ? 'bg-amber-500' : 'bg-slate-300'}`}></span>
+              <span className="text-slate-600">
+                <strong className="text-slate-900 text-sm font-bold">{summary.locationCoverage.missingCoordinatesProjects}</strong> missing coordinates
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+              <span className="text-slate-500">Coverage:</span>
+              <span className="font-extrabold text-blue-700 text-sm">{summary.locationCoverage.coveragePercentage}%</span>
+            </div>
+
+            <Link
+              to="/nearby"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700 hover:text-blue-800"
+            >
+              View Geo Map &rarr;
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* ── 3. RISK OVERVIEW & HIGH PRIORITY PROJECTS (Phase 6) ────────────────── */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-8 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">

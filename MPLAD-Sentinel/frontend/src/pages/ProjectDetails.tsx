@@ -167,10 +167,8 @@ export default function ProjectDetails() {
     project &&
     project.latitude !== undefined &&
     project.latitude !== null &&
-    project.latitude !== '' &&
     project.longitude !== undefined &&
     project.longitude !== null &&
-    project.longitude !== '' &&
     !isNaN(Number(project.latitude)) &&
     !isNaN(Number(project.longitude)) &&
     Number(project.latitude) >= -90 &&
